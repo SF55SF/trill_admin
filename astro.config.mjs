@@ -3,5 +3,13 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://www.trilliant.uz',
-  integrations: [sitemap()],
+  trailingSlash: 'always',
+  build: {
+    inlineStylesheets: 'always',
+  },
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes('/admin/'),
+    }),
+  ],
 });

@@ -1,9 +1,13 @@
 ---
 import { navItems } from '../data/navigation';
+import { homePath, resolveNavHref } from '../lib/paths';
+
+const currentPath = Astro.url.pathname;
+const logoHref = homePath(currentPath);
 ---
 
 <header class="site-header">
-  <a class="logo" href="/" aria-label="На главную страницу">
+  <a class="logo" href={logoHref} aria-label="На главную страницу">
     <span class="logo-mark">T</span>
     <span>Trilliant</span>
   </a>
@@ -22,7 +26,9 @@ import { navItems } from '../data/navigation';
 
   <nav id="main-menu" class="main-nav" aria-label="Основная навигация">
     {navItems.map((item) => (
-      <a href={item.href}>{item.label}</a>
+      <a href={resolveNavHref(item.href, currentPath)}>
+        {item.label}
+      </a>
     ))}
   </nav>
 

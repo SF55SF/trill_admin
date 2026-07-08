@@ -1,30 +1,66 @@
-<section id="interiors" class="section">
+---
+import { relativePath } from '../lib/paths';
+
+const currentPath = Astro.url.pathname;
+
+const galleryImages = [
+  {
+    src: '/images/building-1.jpg',
+    alt: 'Фасад бизнес-центра Trilliant',
+    className: 'gallery-item large',
+  },
+  {
+    src: '/images/building-2.jpg',
+    alt: 'Входная группа бизнес-центра Trilliant',
+    className: 'gallery-item',
+  },
+  {
+    src: '/images/building-3.jpg',
+    alt: 'Офисное пространство в Trilliant',
+    className: 'gallery-item',
+  },
+  {
+    src: '/images/building-4.jpg',
+    alt: 'Переговорная зона в Trilliant',
+    className: 'gallery-item',
+  },
+  {
+    src: '/images/building-5.jpg',
+    alt: 'Общие зоны бизнес-центра Trilliant',
+    className: 'gallery-item',
+  },
+];
+---
+
+<section id="gallery" class="section">
   <div class="container">
-    <div class="section-head wide">
+    <div class="section-heading">
       <p class="eyebrow">Галерея</p>
-      <h2>Фото бизнес-центра Trilliant</h2>
+      <h2>Интерьеры и инфраструктура бизнес-центра</h2>
+      <p>
+        Современные офисные пространства, общие зоны и инфраструктура для
+        комфортной работы команды.
+      </p>
     </div>
 
     <div class="gallery-grid">
-      <div class="gallery-item large">
-        <img src="/images/building-1.jpg" alt="Фасад / главный вид">
-      </div>
+      {galleryImages.map((image) => {
+        const imageSrc = relativePath(image.src, currentPath);
 
-      <div class="gallery-item">
-        <img src="/images/building-2.jpg" alt="Входная группа">
-      </div>
-
-      <div class="gallery-item">
-        <img src="/images/building-3.jpg" alt="Офис">
-      </div>
-
-      <div class="gallery-item">
-        <img src="/images/building-4.jpg" alt="Переговорная">
-      </div>
-
-      <div class="gallery-item">
-        <img src="/images/building-5.jpg" alt="Общие зоны">
-      </div>
+        return (
+          <div class={image.className}>
+            <button
+              class="image-open-button"
+              type="button"
+              data-lightbox-src={imageSrc}
+              data-lightbox-alt={image.alt}
+              aria-label={`Открыть изображение: ${image.alt}`}
+            >
+              <img src={imageSrc} alt={image.alt} />
+            </button>
+          </div>
+        );
+      })}
     </div>
   </div>
 </section>

@@ -1,11 +1,18 @@
 ---
 import type { OfficeEntry } from '../lib/offices';
 import { getOfficeUrl } from '../lib/offices';
+import { relativePath } from '../lib/paths';
 
 const { office, index } = Astro.props as { office: OfficeEntry; index: number };
+
+const currentPath = Astro.url.pathname;
 const imageNumber = index + 1;
 const data = office.data;
-const detailUrl = getOfficeUrl(office);
+
+const detailUrl = relativePath(getOfficeUrl(office), currentPath);
+const presentationFile = relativePath(data.presentationFile, currentPath);
+const planImage = relativePath(data.planImage, currentPath);
+const gallery = data.gallery.map((image) => relativePath(image, currentPath));
 ---
 
 <article class="office-card" id={`office-${data.pageSlug}`}>
@@ -19,7 +26,7 @@ const detailUrl = getOfficeUrl(office);
     </ul>
 
     <div class="card-actions">
-      <a class="button button-dark" href={data.presentationFile}>
+      <a class="button button-dark" href={presentationFile}>
         Презентация
       </a>
 
@@ -33,19 +40,19 @@ const detailUrl = getOfficeUrl(office);
     <button
       class="image-open-button"
       type="button"
-      data-lightbox-src={data.planImage}
+      data-lightbox-src={planImage}
       data-lightbox-alt={`Планировка / фото офиса ${data.area} м²`}
       aria-label={`Открыть планировку офиса ${data.area} м²`}
     >
       <img
-        src={data.planImage}
+        src={planImage}
         alt={`Планировка / фото офиса ${data.area} м²`}
       />
     </button>
   </div>
 
   <div class="mini-gallery" aria-label={`Галерея помещения ${data.area} м²`}>
-    {data.gallery.map((image, photoIndex) => (
+    {gallery.map((image, photoIndex) => (
       <div class="gallery-item">
         <button
           class="image-open-button"

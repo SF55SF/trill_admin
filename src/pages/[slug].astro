@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import { absoluteUrl, homeAnchor, relativePath } from '../lib/paths';
 
 export async function getStaticPaths() {
   const offices = await getCollection('offices', ({ data }) => data.published !== false);
@@ -16,14 +17,18 @@ export async function getStaticPaths() {
 
 const { office } = Astro.props as { office: CollectionEntry<'offices'> };
 const data = office.data;
-const canonical = `https://www.trilliant.uz/${data.pageSlug}/`;
+
+const currentPath = Astro.url.pathname;
+const canonical = absoluteUrl(`/${data.pageSlug}/`);
+const mainImage = relativePath(data.mainImage, currentPath);
+const gallery = data.gallery.map((image) => relativePath(image, currentPath));
 ---
 
 <BaseLayout
   title={data.seoTitle}
   description={data.description}
   canonical={canonical}
-  image={`https://www.trilliant.uz${data.mainImage}`}
+  image={absoluteUrl(data.mainImage)}
 >
   <Header />
 
@@ -32,6 +37,7 @@ const canonical = `https://www.trilliant.uz/${data.pageSlug}/`;
       <div class="container two-col">
         <div>
           <p class="eyebrow">Офис {data.area} м²</p>
+
           <h1 class="office-detail-title">
             {data.detailTitle}
           </h1>
@@ -43,10 +49,11 @@ const canonical = `https://www.trilliant.uz/${data.pageSlug}/`;
           </ul>
 
           <div class="card-actions">
-            <a class="button button-dark" href="/#contacts">
+            <a class="button button-dark" href="#contacts">
               Получить предложение
             </a>
-            <a class="button" href="/#offices">
+
+            <a class="button" href={homeAnchor('offices', currentPath)}>
               Все офисы
             </a>
           </div>
@@ -56,12 +63,12 @@ const canonical = `https://www.trilliant.uz/${data.pageSlug}/`;
           <button
             class="image-open-button"
             type="button"
-            data-lightbox-src={data.mainImage}
+            data-lightbox-src={mainImage}
             data-lightbox-alt={data.imageAlt}
             aria-label={`Открыть фото офиса ${data.area} м²`}
           >
             <img
-              src={data.mainImage}
+              src={mainImage}
               alt={data.imageAlt}
             />
           </button>
@@ -75,7 +82,7 @@ const canonical = `https://www.trilliant.uz/${data.pageSlug}/`;
         <h2>Галерея офиса {data.area} м²</h2>
 
         <div class="mini-gallery">
-          {data.gallery.map((image, index) => (
+          {gallery.map((image, index) => (
             <div>
               <button
                 class="image-open-button"

@@ -1,21 +1,30 @@
 ---
 import { navItems } from '../data/navigation';
+import { homePath, resolveNavHref } from '../lib/paths';
+
+const currentPath = Astro.url.pathname;
 ---
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
-      <a class="logo footer-logo" href="/">
+      <a class="logo footer-logo" href={homePath(currentPath)}>
         <span class="logo-mark">T</span>
         <span>Trilliant</span>
       </a>
+
       <p>
-        Бизнес центр Trilliant, улица Шахрисабз, 2. Информация на сайте носит справочный характер и не является публичной офертой.
+        Бизнес центр Trilliant, улица Шахрисабз, 2. Информация на сайте носит
+        справочный характер и не является публичной офертой.
       </p>
     </div>
 
     <nav class="footer-nav" aria-label="Навигация в подвале">
-      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      {navItems.map((item) => (
+        <a href={resolveNavHref(item.href, currentPath)}>
+          {item.label}
+        </a>
+      ))}
     </nav>
 
     <div class="footer-contact">

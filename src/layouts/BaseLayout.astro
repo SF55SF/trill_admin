@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { getPublishedOffices } from '../lib/offices';
+import { relativePath } from '../lib/paths';
 import Seo from '../components/Seo.astro';
 
 const {
@@ -9,6 +10,15 @@ const {
   canonical = 'https://www.trilliant.uz/',
   image = 'https://www.trilliant.uz/images/hero-bg.jpg',
 } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+
+const siteScript = relativePath('/js/site.js', currentPath);
+const favicon48 = relativePath('/favicon-48x48.png', currentPath);
+const favicon192 = relativePath('/favicon-192x192.png', currentPath);
+const appleTouchIcon = relativePath('/apple-touch-icon.png', currentPath);
+const faviconIco = relativePath('/favicon.ico', currentPath);
+const faviconSvg = relativePath('/favicon.svg', currentPath);
 
 const offices = await getPublishedOffices();
 
@@ -109,31 +119,31 @@ const structuredData = {
       rel="icon"
       type="image/png"
       sizes="48x48"
-      href="https://www.trilliant.uz/favicon-48x48.png"
+      href={favicon48}
     />
 
     <link
       rel="icon"
       type="image/png"
       sizes="192x192"
-      href="https://www.trilliant.uz/favicon-192x192.png"
+      href={favicon192}
     />
 
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="https://www.trilliant.uz/apple-touch-icon.png"
+      href={appleTouchIcon}
     />
 
     <link
       rel="shortcut icon"
-      href="https://www.trilliant.uz/favicon.ico"
+      href={faviconIco}
     />
 
     <link
       rel="icon"
       type="image/svg+xml"
-      href="https://www.trilliant.uz/favicon.svg"
+      href={faviconSvg}
     />
 
     <script
@@ -145,6 +155,6 @@ const structuredData = {
   <body>
     <slot />
 
-    <script src="/js/site.js" defer></script>
+    <script is:inline src={siteScript} defer></script>
   </body>
 </html>
