@@ -1,0 +1,65 @@
+---
+import type { OfficeEntry } from '../lib/offices';
+import { getOfficeUrl } from '../lib/offices';
+
+const { office, index } = Astro.props as { office: OfficeEntry; index: number };
+const imageNumber = index + 1;
+const data = office.data;
+const detailUrl = getOfficeUrl(office);
+---
+
+<article class="office-card" id={`office-${data.pageSlug}`}>
+  <div class="office-card-content">
+    <p class="eyebrow">Вариант {imageNumber}</p>
+
+    <h3>{data.title}</h3>
+
+    <ul class="feature-list">
+      {data.features.map((feature) => <li>{feature}</li>)}
+    </ul>
+
+    <div class="card-actions">
+      <a class="button button-dark" href={data.presentationFile}>
+        Презентация
+      </a>
+
+      <a class="button" href={detailUrl}>
+        Подробнее
+      </a>
+    </div>
+  </div>
+
+  <div class="plan-placeholder">
+    <button
+      class="image-open-button"
+      type="button"
+      data-lightbox-src={data.planImage}
+      data-lightbox-alt={`Планировка / фото офиса ${data.area} м²`}
+      aria-label={`Открыть планировку офиса ${data.area} м²`}
+    >
+      <img
+        src={data.planImage}
+        alt={`Планировка / фото офиса ${data.area} м²`}
+      />
+    </button>
+  </div>
+
+  <div class="mini-gallery" aria-label={`Галерея помещения ${data.area} м²`}>
+    {data.gallery.map((image, photoIndex) => (
+      <div class="gallery-item">
+        <button
+          class="image-open-button"
+          type="button"
+          data-lightbox-src={image}
+          data-lightbox-alt={`Фото ${photoIndex + 1} офиса ${data.area} м²`}
+          aria-label={`Открыть фото ${photoIndex + 1} офиса ${data.area} м²`}
+        >
+          <img
+            src={image}
+            alt={`Фото ${photoIndex + 1} офиса ${data.area} м²`}
+          />
+        </button>
+      </div>
+    ))}
+  </div>
+</article>

@@ -1,0 +1,27 @@
+---
+import { navItems } from '../data/navigation';
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="logo footer-logo" href="/">
+        <span class="logo-mark">T</span>
+        <span>Trilliant</span>
+      </a>
+      <p>
+        Бизнес центр Trilliant, улица Шахрисабз, 2. Информация на сайте носит справочный характер и не является публичной офертой.
+      </p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Навигация в подвале">
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+
+    <div class="footer-contact">
+      <a href="tel:+998505906059">+998 50 590 60 59</a>
+      <a href="mailto:sanjar.saimatov@cmwp.uz">sanjar.saimatov@cmwp.uz</a>
+      <span>© 2026</span>
+    </div>
+  </div>
+</footer>

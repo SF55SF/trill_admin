@@ -1,0 +1,150 @@
+---
+import '../styles/global.css';
+import { getPublishedOffices } from '../lib/offices';
+import Seo from '../components/Seo.astro';
+
+const {
+  title = 'Бизнес центр Trilliant — аренда готовых офисов класса А в Ташкенте',
+  description = 'Готовые офисы с ремонтом и мебелью в бизнес-центре Trilliant на улице Шахрисабз, 2 в Ташкенте.',
+  canonical = 'https://www.trilliant.uz/',
+  image = 'https://www.trilliant.uz/images/hero-bg.jpg',
+} = Astro.props;
+
+const offices = await getPublishedOffices();
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.trilliant.uz/#owner",
+      "name": "Бизнес центр Trilliant",
+      "alternateName": "Trilliant Business Center",
+      "url": "https://www.trilliant.uz/",
+      "logo": "https://www.trilliant.uz/favicon-192x192.png",
+      "image": "https://www.trilliant.uz/images/hero-bg.jpg",
+      "telephone": "+998505906059",
+      "email": "Sanjar.Saimatov@CMWP.uz",
+      "description": "Собственник офисных помещений в бизнес-центре Trilliant предлагает готовые офисы с ремонтом и мебелью в аренду в центре Ташкента.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "улица Шахрисабз, 2",
+        "addressLocality": "Ташкент",
+        "addressCountry": "UZ"
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Ташкент"
+      },
+      "makesOffer": offices.map((office) => ({
+        "@type": "Offer",
+        "name": `Аренда офиса ${office.data.area} м² в бизнес-центре Trilliant`,
+        "availability": "https://schema.org/InStock",
+        "businessFunction": "http://purl.org/goodrelations/v1#LeaseOut",
+        "seller": {
+          "@id": "https://www.trilliant.uz/#owner"
+        },
+        "url": `https://www.trilliant.uz/${office.data.pageSlug}/`,
+        "itemOffered": {
+          "@type": "Place",
+          "name": office.data.title,
+          "description": office.data.description,
+          "image": `https://www.trilliant.uz${office.data.mainImage}`,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": office.data.area,
+            "unitCode": "MTK",
+            "unitText": "м²"
+          }
+        }
+      }))
+    },
+    {
+      "@type": "Place",
+      "@id": "https://www.trilliant.uz/#building",
+      "name": "Бизнес центр Trilliant",
+      "url": "https://www.trilliant.uz/",
+      "image": "https://www.trilliant.uz/images/hero-bg.jpg",
+      "description": "Бизнес-центр Trilliant класса А на улице Шахрисабз, 2 в Ташкенте. Доступны готовые офисные помещения в аренду от собственника.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "улица Шахрисабз, 2",
+        "addressLocality": "Ташкент",
+        "addressCountry": "UZ"
+      },
+      "containedInPlace": {
+        "@type": "City",
+        "name": "Ташкент"
+      }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <Seo
+      title={title}
+      description={description}
+      canonical={canonical}
+      image={image}
+    />
+
+    <meta
+      name="google-site-verification"
+      content="xEHhemrNGnHxS9IjiRBJbUxS5rNS1AnUkUCBgjnx_NY"
+    />
+
+    <meta
+      name="yandex-verification"
+      content="2ff22426191f68cf"
+    />
+
+    <!-- Favicon for Google Search -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="https://www.trilliant.uz/favicon-48x48.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="https://www.trilliant.uz/favicon-192x192.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://www.trilliant.uz/apple-touch-icon.png"
+    />
+
+    <link
+      rel="shortcut icon"
+      href="https://www.trilliant.uz/favicon.ico"
+    />
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://www.trilliant.uz/favicon.svg"
+    />
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    ></script>
+  </head>
+
+  <body>
+    <slot />
+
+    <script src="/js/site.js" defer></script>
+  </body>
+</html>

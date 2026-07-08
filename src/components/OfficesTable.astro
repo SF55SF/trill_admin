@@ -1,0 +1,45 @@
+---
+import type { OfficeEntry } from '../lib/offices';
+
+const { offices } = Astro.props as { offices: OfficeEntry[] };
+---
+
+<section id="offices" class="section">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Офисы в аренду</p>
+      <h2>Свободные помещения</h2>
+    </div>
+
+    <div class="table-wrap" aria-label="Таблица свободных офисов">
+      <table class="offices-table">
+        <thead>
+          <tr>
+            <th>Бизнес-центр</th>
+            <th>Этаж</th>
+            <th>Площадь</th>
+            <th>Рабочие места</th>
+            <th>Готовность</th>
+            <th>Планировка</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {offices.map((office) => (
+            <tr
+              class="office-option-row"
+              onclick={`window.location.href = '#office-${office.data.pageSlug}'`}
+            >
+              <td data-label="Бизнес-центр">{office.data.block}</td>
+              <td data-label="Этаж">{office.data.floor}</td>
+              <td data-label="Площадь">{office.data.area} м²</td>
+              <td data-label="Рабочие места">{office.data.workplaces}</td>
+              <td data-label="Готовность">{office.data.ready}</td>
+              <td data-label="Планировка">{office.data.officeLayout}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

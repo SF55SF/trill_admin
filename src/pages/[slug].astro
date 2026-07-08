@@ -1,0 +1,102 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const offices = await getCollection('offices', ({ data }) => data.published !== false);
+
+  return offices.map((office) => ({
+    params: { slug: office.data.pageSlug },
+    props: { office },
+  }));
+}
+
+const { office } = Astro.props as { office: CollectionEntry<'offices'> };
+const data = office.data;
+const canonical = `https://www.trilliant.uz/${data.pageSlug}/`;
+---
+
+<BaseLayout
+  title={data.seoTitle}
+  description={data.description}
+  canonical={canonical}
+  image={`https://www.trilliant.uz${data.mainImage}`}
+>
+  <Header />
+
+  <main>
+    <section class="section office-detail-page">
+      <div class="container two-col">
+        <div>
+          <p class="eyebrow">Офис {data.area} м²</p>
+          <h1 class="office-detail-title">
+            {data.detailTitle}
+          </h1>
+
+          <p>{data.intro}</p>
+
+          <ul class="feature-list">
+            {data.detailFeatures.map((feature) => <li>{feature}</li>)}
+          </ul>
+
+          <div class="card-actions">
+            <a class="button button-dark" href="/#contacts">
+              Получить предложение
+            </a>
+            <a class="button" href="/#offices">
+              Все офисы
+            </a>
+          </div>
+        </div>
+
+        <div class="plan-placeholder">
+          <button
+            class="image-open-button"
+            type="button"
+            data-lightbox-src={data.mainImage}
+            data-lightbox-alt={data.imageAlt}
+            aria-label={`Открыть фото офиса ${data.area} м²`}
+          >
+            <img
+              src={data.mainImage}
+              alt={data.imageAlt}
+            />
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow">Фото офиса</p>
+        <h2>Галерея офиса {data.area} м²</h2>
+
+        <div class="mini-gallery">
+          {data.gallery.map((image, index) => (
+            <div>
+              <button
+                class="image-open-button"
+                type="button"
+                data-lightbox-src={image}
+                data-lightbox-alt={`Фото ${index + 1} офиса ${data.area} м² в БЦ Trilliant`}
+                aria-label={`Открыть фото ${index + 1} офиса ${data.area} м²`}
+              >
+                <img
+                  src={image}
+                  alt={`Фото ${index + 1} офиса ${data.area} м² в БЦ Trilliant`}
+                />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <Contact />
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,116 @@
+backend:
+  name: github
+  repo: SF55SF/trill_admin
+  branch: main
+
+local_backend: true
+
+media_folder: public/uploads
+public_folder: /uploads
+
+site_url: https://www.trilliant.uz
+display_url: https://www.trilliant.uz
+logo_url: https://www.trilliant.uz/favicon-192x192.png
+
+collections:
+  - name: offices
+    label: Офисы
+    label_singular: Офис
+    folder: src/content/offices
+    create: true
+    slug: "{{pageSlug}}"
+    extension: md
+    format: frontmatter
+    sortable_fields: [order, area, title]
+    view_filters:
+      - label: Опубликованные
+        field: published
+        pattern: true
+    fields:
+      - label: Публиковать на сайте
+        name: published
+        widget: boolean
+        default: true
+      - label: Порядок на главной
+        name: order
+        widget: number
+        value_type: int
+        default: 1
+        min: 1
+      - label: URL страницы без слэшей
+        name: pageSlug
+        widget: string
+        hint: Например office-300m2-trilliant. Страница будет доступна как /office-300m2-trilliant/
+      - label: Бизнес-центр
+        name: block
+        widget: string
+        default: Trilliant
+      - label: Этаж
+        name: floor
+        widget: string
+      - label: Площадь, м²
+        name: area
+        widget: number
+        value_type: int
+      - label: Рабочие места
+        name: workplaces
+        widget: string
+        hint: Например до 30 рабочих мест
+      - label: Готовность
+        name: ready
+        widget: string
+        default: Готов к въезду
+      - label: Планировка
+        name: officeLayout
+        widget: string
+      - label: Заголовок карточки на главной
+        name: title
+        widget: string
+      - label: Заголовок страницы офиса
+        name: detailTitle
+        widget: string
+      - label: SEO title
+        name: seoTitle
+        widget: string
+      - label: SEO description
+        name: description
+        widget: text
+      - label: Alt-текст главного фото
+        name: imageAlt
+        widget: string
+        default: Офис в бизнес-центре Trilliant, Ташкент
+      - label: Описание на странице офиса
+        name: intro
+        widget: text
+      - label: Преимущества в карточке
+        name: features
+        widget: list
+        field:
+          label: Пункт
+          name: item
+          widget: string
+      - label: Характеристики на странице офиса
+        name: detailFeatures
+        widget: list
+        field:
+          label: Пункт
+          name: item
+          widget: string
+      - label: Планировка
+        name: planImage
+        widget: image
+      - label: Главное фото
+        name: mainImage
+        widget: image
+      - label: Галерея
+        name: gallery
+        widget: list
+        field:
+          label: Фото
+          name: image
+          widget: image
+      - label: PDF презентация
+        name: presentationFile
+        widget: file
+        required: false
+        default: /files/placeholder-presentation-1.pdf

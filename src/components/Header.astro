@@ -1,0 +1,33 @@
+---
+import { navItems } from '../data/navigation';
+---
+
+<header class="site-header">
+  <a class="logo" href="/" aria-label="На главную страницу">
+    <span class="logo-mark">T</span>
+    <span>Trilliant</span>
+  </a>
+
+  <button
+    class="menu-button"
+    type="button"
+    aria-label="Открыть меню"
+    aria-expanded="false"
+    aria-controls="main-menu"
+  >
+    <span class="menu-button__line"></span>
+    <span class="menu-button__line"></span>
+    <span class="menu-button__text">Меню</span>
+  </button>
+
+  <nav id="main-menu" class="main-nav" aria-label="Основная навигация">
+    {navItems.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))}
+  </nav>
+
+  <div class="header-contacts">
+    <a href="tel:+998505906059">+998 50 590 60 59</a>
+    <a href="mailto:sanjar.saimatov@cmwp.uz">sanjar.saimatov@cmwp.uz</a>
+  </div>
+</header>

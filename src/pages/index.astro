@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Stats from '../components/Stats.astro';
+import Offices from '../components/Offices.astro';
+import Interiors from '../components/Interiors.astro';
+import Restaurants from '../components/Restaurants.astro';
+import Location from '../components/Location.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Бизнес центр Trilliant — аренда готовых офисов класса А в Ташкенте"
+  description="Готовые офисы с ремонтом и мебелью в БЦ Trilliant на улице Шахрисабз, 2. Доступны офисы 128 м², 223 м² и 1674 м² для компаний разного размера."
+  canonical="https://www.trilliant.uz/"
+  image="https://www.trilliant.uz/images/hero-bg.jpg"
+>
+  <Header />
+
+  <main id="top">
+    <div id="about">
+      <Hero />
+      <Stats />
+    </div>
+
+    <div id="offices">
+      <Offices />
+    </div>
+
+    <div id="gallery">
+      <Interiors />
+    </div>
+
+    <div id="infrastructure">
+      <Restaurants />
+    </div>
+
+    <div id="location">
+      <Location />
+    </div>
+
+    <div id="contacts">
+      <Contact />
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
