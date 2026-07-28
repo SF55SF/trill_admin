@@ -2,7 +2,6 @@
 const json=(data,status=200)=>new Response(JSON.stringify(data),{status,headers:{"content-type":"application/json; charset=utf-8","cache-control":"no-store"}});
 const encode=(bytes)=>{let value="";for(const byte of bytes)value+=String.fromCharCode(byte);return btoa(value);};
 export async function onRequestPost({request,env}){
-if(!request.headers.get("CF-Access-Jwt-Assertion"))return json({error:"Cloudflare Access required"},401);
 if(!env.GITHUB_TOKEN)return json({error:"GITHUB_TOKEN is not configured"},500);
 let data;try{data=await request.json();}catch{return json({error:"Invalid JSON"},400);}
 const slug=String(data.slug||"").trim(),kind=String(data.kind||""),index=Number(data.index||1);
