@@ -22,7 +22,7 @@ const fields={};
 try{
 for(const entry of new FormData(form).entries()){const key=entry[0],value=entry[1];if(typeof value!=="string")continue;const raw=value.trim();if(key==="area"){const number=Number(raw.split(",").join("."));if(!Number.isFinite(number))throw Error("Некорректная площадь");fields[key]=number;}else fields[key]=raw;}
 button.disabled=true;setStatus("Сохраняем...","saving");
-const response=await fetch("/api/admin/save",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields,create:createMode})});
+const response=await fetch("/api/admin/save",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields,create:createMode})});
 const result=await response.json().catch(()=>({}));
 if(!response.ok)throw Error(result.error||("Ошибка сохранения: "+response.status));
 if(result.created){createMode=false;existingSlugs.add(slug);setStatus("Офис создан. После публикации обновите страницу; название можно менять в любое время.","ok");}else setStatus(result.unchanged?"Изменений нет.":"Сохранено. Обновление сайта запущено.","ok");
