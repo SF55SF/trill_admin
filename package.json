@@ -13,5 +13,8 @@
   },
   "devDependencies": {
     "typescript": "latest"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
