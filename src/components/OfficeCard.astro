@@ -8,6 +8,7 @@ const { office } = Astro.props as { office: OfficeEntry };
 const currentPath = Astro.url.pathname;
 
 const data = office.data;
+const rentRate = data.rentRate > 0 ? "$" + data.rentRate + " / м² / мес." : "По запросу";
 
 const detailUrl = relativePath(getOfficeUrl(office), currentPath);
 const presentationFile = relativePath(data.presentationFile, currentPath);
