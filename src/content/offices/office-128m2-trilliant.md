@@ -1,10 +1,10 @@
 ---
 published: true
-order: 3
 pageSlug: office-128m2-trilliant
 block: Trilliant
 floor: '7'
 area: 128
+rentRate: 40
 workplaces: до 20 рабочих мест
 ready: Готов к въезду
 officeLayout: открытая с одной переговорной

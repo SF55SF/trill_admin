@@ -4,7 +4,6 @@ const offices = defineCollection({
   type: 'content',
   schema: z.object({
     published: z.boolean().default(true),
-    order: z.number().default(1),
     pageSlug: z.string(),
     block: z.string().default('Trilliant'),
     floor: z.string(),

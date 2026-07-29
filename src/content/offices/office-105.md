@@ -1,10 +1,10 @@
 ---
 published: true
-order: 9999
 pageSlug: "office-105"
 block: "Trilliant"
 floor: "6"
 area: 105
+rentRate: 40
 workplaces: "по запросу"
 ready: "Доступен"
 officeLayout: "2 кабинета + open space"

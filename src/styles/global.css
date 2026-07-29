@@ -1612,3 +1612,10 @@ strong{font-weight:600}
 .footer-contact-bar,.footer-info-bar{font-size:15px;font-weight:400}
 .footer-contact-bar strong,.footer-info-main{font-weight:600}
 @media(max-width:640px){h1{font-size:38px}h2{font-size:30px}h3{font-size:24px}.lead{font-size:17px}.main-nav{font-size:15px}.offices-table td{font-size:15px}}
+
+
+/* TRILLIANT_OFFICES_40_60 */
+.offices-browser{grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:28px}
+.offices-browser .table-wrap{width:100%;max-width:none}
+.offices-browser .offices-table{width:100%;min-width:0;table-layout:auto}
+@media(max-width:1180px){.offices-browser{grid-template-columns:1fr}}

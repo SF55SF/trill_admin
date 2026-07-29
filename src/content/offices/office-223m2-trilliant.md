@@ -1,10 +1,10 @@
 ---
 published: true
-order: 4
 pageSlug: office-223m2-trilliant
 block: Trilliant
 floor: '8'
 area: 223
+rentRate: 40
 workplaces: до 30 рабочих мест
 ready: Готов к въезду
 officeLayout: смешанная

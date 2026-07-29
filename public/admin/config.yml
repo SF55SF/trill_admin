@@ -21,7 +21,7 @@ collections:
     slug: "{{pageSlug}}"
     extension: md
     format: frontmatter
-    sortable_fields: [order, area, title]
+    sortable_fields: [floor, area, title]
     view_filters:
       - label: Опубликованные
         field: published
@@ -31,12 +31,6 @@ collections:
         name: published
         widget: boolean
         default: true
-      - label: Порядок на главной
-        name: order
-        widget: number
-        value_type: int
-        default: 1
-        min: 1
       - label: URL страницы без слэшей
         name: pageSlug
         widget: string

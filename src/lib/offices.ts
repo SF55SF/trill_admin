@@ -25,7 +25,7 @@ export async function getPublishedOffices() {
 
   return offices
     .filter(({ data }) => isOfficePublic(data))
-    .sort((a, b) => a.data.order - b.data.order);
+    .sort((a, b) => { const af = Number.parseFloat(String(a.data.floor).replace(",", ".")); const bf = Number.parseFloat(String(b.data.floor).replace(",", ".")); const floorDiff = (Number.isFinite(af) ? af : Number.MAX_SAFE_INTEGER) - (Number.isFinite(bf) ? bf : Number.MAX_SAFE_INTEGER); return floorDiff || a.data.area - b.data.area; });
 }
 
 export function getOfficeUrl(office: OfficeEntry) {

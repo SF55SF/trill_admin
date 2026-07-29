@@ -1,10 +1,10 @@
 ---
 published: true
-order: 2
 pageSlug: office-1674m2-trilliant
 block: Trilliant
 floor: "14"
 area: 1674
+rentRate: 40
 workplaces: "до 250 рабочих мест"
 ready: "Готов к въезду"
 officeLayout: "планировка смешанная, с мебелью"
