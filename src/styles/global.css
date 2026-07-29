@@ -1718,3 +1718,12 @@ html body a.telegram-icon-button svg{fill:#fff!important}
 .office-card .office-layout-row,.office-detail-page .office-layout-row{display:block!important;width:100%!important;max-width:none!important;padding:14px 16px!important}
 .office-card .office-layout-row span,.office-detail-page .office-layout-row span{font-size:21px!important;font-weight:400!important;line-height:1.45!important;text-align:left!important}
 @media(max-width:640px){.office-card .office-card-topline,.office-detail-page .office-card-topline{padding:14px 72px 14px 14px!important}.office-card .office-card-topline .telegram-icon-button,.office-detail-page .office-card-topline .telegram-icon-button{right:12px!important;width:46px!important;min-width:46px!important;height:46px!important;min-height:46px!important}.office-card .office-layout-row span,.office-detail-page .office-layout-row span{font-size:18px!important}}
+
+
+/* TRILLIANT_OFFICE_CARD_TEXT_MATCH_TABLE */
+.office-card .office-card-topline strong{font-size:13px!important}
+.office-card .office-card-topline span{font-size:16px!important}
+.office-card .office-card-topline small{font-size:12px!important}
+.office-card .feature-list li{font-size:16px!important;line-height:1.45!important}
+.office-card .office-layout-row,.office-card .office-layout-row span{font-size:16px!important;line-height:1.45!important}
+@media(max-width:640px){.office-card .office-card-topline strong{font-size:13px!important}.office-card .office-card-topline span,.office-card .feature-list li,.office-card .office-layout-row,.office-card .office-layout-row span{font-size:16px!important}.office-card .office-card-topline small{font-size:12px!important}}
