@@ -1505,3 +1505,24 @@ body .office-detail-page h1.office-detail-title {
 .rent-rate{display:grid;gap:3px;justify-items:center}
 .rent-rate small{color:var(--muted);font-size:11px;line-height:1.25}
 @media(max-width:640px){.offices-table td{text-align:left}.rent-rate{justify-items:start}}
+
+
+/* TRILLIANT_OFFICE_CARD_COMPACT */
+.office-card{grid-template-columns:minmax(0,.9fr) minmax(280px,1fr);gap:16px;padding:20px}
+.office-card-content h3{margin-bottom:12px}
+.office-card-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.office-card-meta p{display:grid;gap:3px;margin:0;padding:9px 11px;border-radius:12px;background:var(--surface-soft)}
+.office-card-meta strong{color:var(--muted);font-size:11px}
+.office-card-meta span{font-size:14px;font-weight:700}
+.office-card-meta small{color:var(--muted);font-size:10px;line-height:1.25}
+.office-card .feature-list{gap:6px}
+.office-card .feature-list li{padding:8px 10px;font-size:14px}
+.office-card .card-actions{gap:8px;margin-top:14px}
+.office-card .button{min-height:40px;padding:9px 13px}
+.office-card .button-telegram{border-color:var(--dark-2)}
+.office-card .plan-placeholder{min-height:240px;border-radius:18px;overflow:hidden}
+.office-card .plan-placeholder img{width:100%;height:240px;object-fit:contain}
+.office-card .mini-gallery{gap:8px}
+.office-card .mini-gallery div{height:116px;min-height:0;border-radius:14px}
+.office-card .mini-gallery img{width:100%;height:100%;object-fit:cover}
+@media(max-width:640px){.office-card-meta{grid-template-columns:1fr}.office-card .plan-placeholder{min-height:210px}.office-card .plan-placeholder img{height:210px}.office-card .mini-gallery div{height:105px}}
