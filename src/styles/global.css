@@ -1706,3 +1706,15 @@ strong{font-weight:600}
 .footer-contact-bar{margin:0 0 16px}
 .footer-info-bar{grid-template-columns:minmax(0,1fr) auto;align-items:center;margin:0}
 @media(max-width:640px){.office-card .office-card-topline strong{font-size:15px}.office-card .office-card-topline span,.office-card .feature-list li,.office-card .office-layout-row,.office-card .office-layout-row span{font-size:18px}.office-card .office-card-topline small{font-size:14px}.footer-info-bar{grid-template-columns:1fr}}
+
+
+/* TRILLIANT_RENT_ROW_FINAL */
+.office-card .office-card-topline,.office-detail-page .office-card-topline{position:relative!important;display:block!important;width:100%!important;padding:16px 84px 16px 16px!important;border-radius:16px;background:var(--surface-soft)}
+.office-card .office-card-topline .office-rent-box,.office-detail-page .office-card-topline .office-rent-box{display:grid!important;width:100%!important;min-height:0!important;gap:4px;padding:0!important;background:transparent!important}
+.office-card .office-card-topline .telegram-icon-button,.office-detail-page .office-card-topline .telegram-icon-button{position:absolute!important;top:50%!important;right:16px!important;width:52px!important;min-width:52px!important;height:52px!important;min-height:52px!important;transform:translateY(-50%)!important}
+html body a.telegram-icon-button{background:#229ed9!important;background-color:#229ed9!important;border-color:#229ed9!important;color:#fff!important}
+html body a.telegram-icon-button:hover{background:#1d8fc5!important;background-color:#1d8fc5!important;border-color:#1d8fc5!important;color:#fff!important}
+html body a.telegram-icon-button svg{fill:#fff!important}
+.office-card .office-layout-row,.office-detail-page .office-layout-row{display:block!important;width:100%!important;max-width:none!important;padding:14px 16px!important}
+.office-card .office-layout-row span,.office-detail-page .office-layout-row span{font-size:21px!important;font-weight:400!important;line-height:1.45!important;text-align:left!important}
+@media(max-width:640px){.office-card .office-card-topline,.office-detail-page .office-card-topline{padding:14px 72px 14px 14px!important}.office-card .office-card-topline .telegram-icon-button,.office-detail-page .office-card-topline .telegram-icon-button{right:12px!important;width:46px!important;min-width:46px!important;height:46px!important;min-height:46px!important}.office-card .office-layout-row span,.office-detail-page .office-layout-row span{font-size:18px!important}}
