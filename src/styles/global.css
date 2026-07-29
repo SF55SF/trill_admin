@@ -1635,3 +1635,21 @@ strong{font-weight:600}
 .stats-section .stats-grid article{display:grid;place-content:center;min-height:150px;text-align:center}
 .stats-section .stats-grid strong,.stats-section .stats-grid span{width:100%;text-align:center}
 @media(max-width:640px){.stats-section .two-col>div:first-child p{font-size:1.05rem}.stats-section .stats-grid article{min-height:130px}}
+
+
+/* TRILLIANT_HEADER_FOOTER_TELEGRAM */
+.site-header{grid-template-columns:auto 1fr auto auto}
+.telegram-icon-button{display:inline-grid;place-items:center;width:44px;min-width:44px;height:44px;min-height:44px;padding:0;border:1px solid #e32636;border-radius:50%;background:#e32636;color:#fff;text-decoration:none}
+.telegram-icon-button:hover{border-color:#c91626;background:#c91626;color:#fff}
+.telegram-icon-button svg{display:block;width:20px;height:20px;fill:currentColor}
+.header-telegram{justify-self:end}
+.footer-contact-bar,.footer-info-bar{display:grid;align-items:center;min-height:64px;padding:16px 22px;border:1px solid rgba(255,255,255,.16);border-radius:20px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.86)}
+.footer-contact-bar{grid-template-columns:1.2fr 1fr 1.4fr auto;gap:24px;margin-bottom:16px}
+.footer-info-bar{grid-template-columns:1.2fr 1fr;gap:24px;margin-top:0}
+.footer-contact-bar>*{margin:0}
+.footer-info-bar p{margin:0}
+.footer-info-note{text-align:right}
+.footer-telegram{justify-self:end}
+@media(max-width:1100px){.site-header{grid-template-columns:auto 1fr auto}}
+@media(max-width:900px){.site-header{grid-template-columns:1fr auto auto}.footer-contact-bar,.footer-info-bar{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.telegram-icon-button{width:42px;min-width:42px;height:42px;min-height:42px}.footer-contact-bar,.footer-info-bar{grid-template-columns:1fr;gap:10px;min-height:0}.footer-info-note{text-align:left}.footer-telegram{justify-self:start}}
