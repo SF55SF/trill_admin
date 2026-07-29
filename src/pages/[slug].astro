@@ -18,6 +18,7 @@ export async function getStaticPaths() {
 
 const { office } = Astro.props as { office: CollectionEntry<'offices'> };
 const data = office.data;
+const rentRate = data.rentRate > 0 ? "$" + new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(data.rentRate) + " / м² / мес." : "По запросу";
 
 const currentPath = Astro.url.pathname;
 const canonical = absoluteUrl(`/${data.pageSlug}/`);
@@ -45,6 +46,11 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
 
           <p>{data.intro}</p>
 
+          <div class="office-detail-meta">
+            <p><strong>Планировка</strong><span>{data.officeLayout}</span></p>
+            <p><strong>Ставка аренды</strong><span>{rentRate}</span><small>не включая эксплуатацию и налоги.</small></p>
+          </div>
+
           <ul class="feature-list">
             {data.detailFeatures.map((feature) => <li>{feature}</li>)}
           </ul>
@@ -69,6 +75,7 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
             aria-label={`Открыть фото офиса ${data.area} м²`}
           >
             <img
+              class="office-detail-main-image"
               src={mainImage}
               alt={data.imageAlt}
             />
@@ -93,6 +100,7 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
                 aria-label={`Открыть фото ${index + 1} офиса ${data.area} м²`}
               >
                 <img
+                  class="office-detail-gallery-image"
                   src={image}
                   alt={`Фото ${index + 1} офиса ${data.area} м² в БЦ Trilliant`}
                 />

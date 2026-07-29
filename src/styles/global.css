@@ -1526,3 +1526,14 @@ body .office-detail-page h1.office-detail-title {
 .office-card .mini-gallery div{height:116px;min-height:0;border-radius:14px}
 .office-card .mini-gallery img{width:100%;height:100%;object-fit:cover}
 @media(max-width:640px){.office-card-meta{grid-template-columns:1fr}.office-card .plan-placeholder{min-height:210px}.office-card .plan-placeholder img{height:210px}.office-card .mini-gallery div{height:105px}}
+
+
+/* TRILLIANT_OFFICE_DETAIL_MEDIA */
+.office-detail-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.office-detail-meta p{display:grid;gap:4px;margin:0;padding:12px 14px;border-radius:14px;background:var(--surface-soft)}
+.office-detail-meta strong{color:var(--muted);font-size:12px}
+.office-detail-meta span{font-weight:800}
+.office-detail-meta small{color:var(--muted);font-size:11px;line-height:1.3}
+.office-detail-main-image{width:100%;height:100%;max-height:460px;object-fit:contain;background:var(--surface-soft)}
+.office-detail-gallery-image{width:100%;height:100%;object-fit:cover}
+@media(max-width:640px){.office-detail-meta{grid-template-columns:1fr}}
