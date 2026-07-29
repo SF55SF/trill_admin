@@ -1572,3 +1572,12 @@ body .office-detail-page h1.office-detail-title {
 @media(max-width:1180px){.offices-browser{grid-template-columns:1fr}.office-hover-gallery{min-height:360px}.offices-browser .table-wrap{width:100%;overflow-x:auto}.offices-browser .offices-table{width:100%;min-width:760px}}
 @media(max-width:900px){.office-card{grid-template-columns:1fr}.office-card .plan-placeholder{aspect-ratio:16/10}}
 @media(max-width:640px){.office-card{padding:20px}.office-card .plan-placeholder{aspect-ratio:4/3}.office-card .mini-gallery{grid-template-columns:1fr}.office-hover-gallery{min-height:260px}}
+
+
+/* TRILLIANT_FOOTER_COMPACT */
+.site-footer{padding:30px 0}
+.footer-info-bar{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-top:14px;padding:18px 22px;border:1px solid rgba(255,255,255,.16);border-radius:20px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.78)}
+.footer-info-bar p{margin:0}
+.footer-info-main{color:#fff;font-weight:700}
+.footer-info-note{text-align:right}
+@media(max-width:640px){.footer-info-bar{display:grid;gap:8px;padding:16px}.footer-info-note{text-align:left}}

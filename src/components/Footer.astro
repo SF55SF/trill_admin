@@ -14,29 +14,8 @@ const footerLogo = relativePath('/favicon.svg', currentPath);
     <a href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer">Telegram</a>
   </div>
 
-  <div class="container footer-grid">
-    <div>
-      <a class="logo footer-logo" href={homePath(currentPath)}>
-        <img class="footer-logo-image" src={footerLogo} alt="" aria-hidden="true" />
-        <span>Trilliant</span>
-      </a>
-
-      <p>
-        Бизнес центр Trilliant, улица Шахрисабз, 2. Информация на сайте носит
-        справочный характер и не является публичной офертой.
-      </p>
-    </div>
-
-    <nav class="footer-nav" aria-label="Навигация в подвале">
-      {navItems.map((item) => (
-        <a href={resolveNavHref(item.href, currentPath)}>
-          {item.label}
-        </a>
-      ))}
-    </nav>
-
-    <div class="footer-contact">
-      <span>© 2026</span>
-    </div>
+  <div class="container footer-info-bar">
+    <p class="footer-info-main">Trilliant — бизнес-центр класса А, ул. Шахрисабз, 2, Ташкент</p>
+    <p class="footer-info-note">Информация не является публичной офертой · © 2026</p>
   </div>
 </footer>
