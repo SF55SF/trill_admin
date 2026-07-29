@@ -3,35 +3,18 @@
     <div>
       <p class="eyebrow">Расположение</p>
       <h2>Бизнес центр Триллиант, улица Шахрисабз, 2</h2>
-      <p>
-    
-      </p>
-
       <div class="route-list">
-        <article>
-          <strong>Адрес</strong>
-          <span>улица Шахрисабз, 2</span>
-        </article>
-        <article>
-          <strong>Город</strong>
-          <span>г.Ташкент</span>
-        </article>
-        <article>
-          <strong>Маршрут</strong>
-          <span>Заезд со стороны ул. Шахрисабз</span>
-        </article>
+        <article><strong>Адрес</strong><span>улица Шахрисабз, 2</span></article>
+        <article><strong>Город</strong><span>г. Ташкент</span></article>
+        <article><strong>Маршрут</strong><span>Заезд со стороны ул. Шахрисабз</span></article>
       </div>
     </div>
-
-    <div class="map-placeholder">
-        <iframe
-          src="https://yandex.uz/map-widget/v1/?ll=69.282683%2C41.315763&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=69.282683%2C41.315763&amp;whatshere%5Bzoom%5D=17&amp;z=17"
-          width="100%"
-          height="450"
-          frameborder="0"
-          allowfullscreen="true"
-          style="border:0;">
-        </iframe>
+    <div class="map-placeholder map-interaction" data-map-interaction>
+      <iframe src="https://yandex.uz/map-widget/v1/?ll=69.282683%2C41.315763&amp;mode=whatshere&amp;whatshere%5Bpoint%5D=69.282683%2C41.315763&amp;whatshere%5Bzoom%5D=17&amp;z=17" width="100%" height="450" frameborder="0" allowfullscreen="true" loading="lazy" title="Карта расположения бизнес-центра Trilliant" style="border:0;"></iframe>
+      <div class="map-lock"><span>Нажмите «Управлять картой», чтобы перемещать и масштабировать карту</span></div>
+      <button class="map-control-button" type="button" data-map-control aria-pressed="false">Управлять картой</button>
     </div>
   </div>
 </section>
+
+<script is:inline src="/js/map-control.js"></script>
