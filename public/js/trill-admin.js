@@ -32,5 +32,4 @@ finally{button.disabled=false;}
 }
 /* TRILL_ADMIN_SAVE_CLIENT_FILE_END */
 
-/* TRILL_ADMIN_SWITCH_NAV */
-document.querySelectorAll("[data-office-list] a").forEach((link)=>{link.addEventListener("click",(event)=>{event.preventDefault();window.location.href=link.href;});});
+
