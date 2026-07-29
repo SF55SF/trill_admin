@@ -35,4 +35,5 @@ gallery:
 - /images/office-3-photo-2.jpg
 - /images/office-3-photo-3.jpg
 presentationFile: /files/placeholder-presentation-3.pdf
+order: 5
 ---
