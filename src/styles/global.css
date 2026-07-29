@@ -1,20 +1,20 @@
 :root {
-  --mint: #88BDBC;
-  --teal: #254E58;
-  --deep: #112D32;
-  --olive: #4F4A41;
-  --taupe: #6E6658;
-  --bg: #eef5f3;
+  --mint: #B8A06A;
+  --teal: #2B3B4D;
+  --deep: #111820;
+  --olive: #56534D;
+  --taupe: #77736B;
+  --bg: #F4F2ED;
   --surface: #ffffff;
-  --surface-soft: #dce9e7;
-  --dark: #112D32;
-  --dark-2: #254E58;
-  --text: #112D32;
+  --surface-soft: #E8E5DE;
+  --dark: #111820;
+  --dark-2: #2B3B4D;
+  --text: #111820;
   --muted: #5b6d70;
-  --accent: #254E58;
-  --line: rgba(17, 45, 50, 0.14);
+  --accent: #B8A06A;
+  --line: rgba(17, 24, 32, 0.14);
   --radius: 28px;
-  --shadow: 0 20px 60px rgba(17, 45, 50, 0.12);
+  --shadow: 0 20px 60px rgba(17, 24, 32, 0.12);
   color-scheme: light;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -55,7 +55,7 @@ textarea {
 code {
   padding: 2px 6px;
   border-radius: 8px;
-  background: rgba(17, 45, 50, 0.08);
+  background: rgba(17, 24, 32, 0.08);
   font-size: 0.92em;
 }
 
@@ -96,7 +96,7 @@ code {
 }
 
 .section-dark .eyebrow {
-  color: #88BDBC;
+  color: #B8A06A;
 }
 
 h1,
@@ -140,7 +140,7 @@ h3 {
   justify-content: center;
   min-height: 48px;
   padding: 13px 20px;
-  border: 1px solid rgba(17, 45, 50, 0.16);
+  border: 1px solid rgba(17, 24, 32, 0.16);
   border-radius: 999px;
   background: #fff;
   color: var(--dark);
@@ -185,7 +185,7 @@ h3 {
   align-items: center;
   padding: 18px 30px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(17, 45, 50, 0.88);
+  background: rgba(17, 24, 32, 0.88);
   color: #fff;
   backdrop-filter: blur(18px);
 }
@@ -436,9 +436,9 @@ h3 {
   place-items: center;
   border-radius: 24px;
   background:
-    linear-gradient(135deg, rgba(37, 78, 88, 0.9), rgba(37, 78, 88, 0.35)),
+    linear-gradient(135deg, rgba(43, 59, 77, 0.9), rgba(43, 59, 77, 0.35)),
     repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.24) 0 1px, transparent 1px 18px),
-    #88BDBC;
+    #B8A06A;
   color: #fff;
   font-weight: 800;
   text-align: center;
@@ -457,8 +457,8 @@ h3 {
   place-items: center;
   border-radius: 20px;
   background:
-    linear-gradient(135deg, rgba(17, 45, 50, 0.82), rgba(17, 45, 50, 0.18)),
-    #dce9e7;
+    linear-gradient(135deg, rgba(17, 24, 32, 0.82), rgba(17, 24, 32, 0.18)),
+    #E8E5DE;
   color: rgba(255, 255, 255, 0.86);
   font-weight: 800;
   overflow: hidden;
@@ -688,7 +688,7 @@ h3 {
     padding: 12px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 22px;
-    background: rgba(17, 45, 50, 0.98);
+    background: rgba(17, 24, 32, 0.98);
     box-shadow: 0 22px 55px rgba(0, 0, 0, 0.28);
     backdrop-filter: blur(18px);
   }
@@ -776,9 +776,9 @@ h3 {
 
   .hero-bg {
     background:
-      linear-gradient(180deg, rgba(17, 45, 50, 0.96), rgba(17, 45, 50, 0.74)),
-      radial-gradient(circle at 85% 10%, rgba(136, 189, 188, 0.5), transparent 28%),
-      linear-gradient(135deg, #254E58 0%, #6E6658 55%, #eef5f3 100%);
+      linear-gradient(180deg, rgba(17, 24, 32, 0.96), rgba(17, 24, 32, 0.74)),
+      radial-gradient(circle at 85% 10%, rgba(184, 160, 106, 0.5), transparent 28%),
+      linear-gradient(135deg, #2B3B4D 0%, #77736B 55%, #F4F2ED 100%);
   }
 
   .hero-inner {
@@ -862,7 +862,7 @@ h3 {
     border: 1px solid var(--line);
     border-radius: 20px;
     background: var(--surface);
-    box-shadow: 0 10px 28px rgba(17, 45, 50, 0.08);
+    box-shadow: 0 10px 28px rgba(17, 24, 32, 0.08);
     overflow: hidden;
   }
 
@@ -1208,7 +1208,7 @@ body .office-detail-page h1.office-detail-title {
   gap: 24px;
   align-items: center;
   padding: 18px 30px;
-  background: rgba(17, 45, 50, 0.92);
+  background: rgba(17, 24, 32, 0.92);
   color: #fff;
 }
 
@@ -1331,7 +1331,7 @@ body .office-detail-page h1.office-detail-title {
     gap: 6px;
     padding: 12px;
     border-radius: 22px;
-    background: rgba(17, 45, 50, 0.98);
+    background: rgba(17, 24, 32, 0.98);
   }
 
   .main-nav.is-open {
