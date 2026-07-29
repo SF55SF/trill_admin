@@ -8,6 +8,8 @@ const { office } = Astro.props as { office: OfficeEntry };
 const currentPath = Astro.url.pathname;
 
 const data = office.data;
+const displayTitle = data.title.startsWith("Офисный блок ") ? data.title.slice("Офисный блок ".length) : data.title;
+const cardFeatures = data.features.filter((feature) => !feature.toLowerCase().includes("планировк"));
 const rentRate = data.rentRate > 0 ? "$" + data.rentRate + " / м² / мес." : "По запросу";
 
 const detailUrl = relativePath(getOfficeUrl(office), currentPath);
@@ -20,7 +22,7 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
   <div class="office-card-content">
     
 
-    <h3>{data.title}</h3>
+    <h3>{displayTitle}</h3>
 
     <div class="office-card-meta">
       <p><strong>Планировка</strong><span>{data.officeLayout}</span></p>
@@ -28,7 +30,7 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
     </div>
 
     <ul class="feature-list">
-      {data.features.map((feature) => <li>{feature}</li>)}
+      {cardFeatures.map((feature) => <li>{feature}</li>)}
     </ul>
 
     <div class="card-actions">
