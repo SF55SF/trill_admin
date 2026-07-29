@@ -1687,3 +1687,22 @@ strong{font-weight:600}
 .telegram-icon-button svg{width:22px;height:22px;fill:#fff!important}
 @media(max-width:900px){.stats-section .two-col{grid-template-columns:1fr}.stats-section .stats-grid{width:100%;max-width:none;justify-self:stretch}}
 @media(max-width:640px){.stats-section .two-col>div:first-child h2{font-size:27px}.stats-section .two-col>div:first-child p:not(.eyebrow){font-size:.95rem}.stats-section .stats-grid article{min-height:104px}.office-card .office-layout-row,.office-detail-page .office-layout-row{align-items:flex-start;flex-wrap:wrap}.office-card .feature-list li{font-size:17px}.office-card .card-actions .button{font-size:16px}}
+
+
+/* TRILLIANT_CARD_TEXT_TELEGRAM_FOOTER */
+.office-card .office-card-topline,.office-detail-page .office-card-topline{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:14px;width:100%;padding:14px 16px;border-radius:16px;background:var(--surface-soft)}
+.office-card .office-card-topline .office-rent-box,.office-detail-page .office-card-topline .office-rent-box{width:100%;min-height:0;padding:0;background:transparent}
+.office-card .office-card-topline strong{font-size:16px}
+.office-card .office-card-topline span{font-size:21px}
+.office-card .office-card-topline small{font-size:16px}
+.office-card .feature-list li{font-size:21px;line-height:1.45}
+.office-card .office-layout-row{display:block;width:100%;max-width:none;margin:10px 0 0;padding:14px 16px;font-size:21px;line-height:1.45}
+.office-card .office-layout-row span{font-size:21px;text-align:left}
+.office-detail-page .office-layout-row{display:block;width:100%;max-width:none}
+.telegram-icon-button{background:#229ed9!important;border-color:#229ed9!important;color:#fff!important}
+.telegram-icon-button:hover{background:#1d8fc5!important;border-color:#1d8fc5!important;color:#fff!important}
+.telegram-icon-button svg{fill:#fff!important}
+.footer-contact-bar,.footer-info-bar{box-sizing:border-box;width:100%;min-height:64px;padding:16px 22px;border:1px solid rgba(255,255,255,.16);border-radius:20px;background:rgba(255,255,255,.07);color:rgba(255,255,255,.86)}
+.footer-contact-bar{margin:0 0 16px}
+.footer-info-bar{grid-template-columns:minmax(0,1fr) auto;align-items:center;margin:0}
+@media(max-width:640px){.office-card .office-card-topline strong{font-size:15px}.office-card .office-card-topline span,.office-card .feature-list li,.office-card .office-layout-row,.office-card .office-layout-row span{font-size:18px}.office-card .office-card-topline small{font-size:14px}.footer-info-bar{grid-template-columns:1fr}}
