@@ -5,6 +5,7 @@ block: Trilliant
 floor: '8'
 area: 223
 rentRate: 40
+rentTax: НДС
 workplaces: до 30 рабочих мест
 ready: Готов к въезду
 officeLayout: смешанная
@@ -35,5 +36,4 @@ gallery:
 - /images/office-3-photo-2.jpg
 - /images/office-3-photo-3.jpg
 presentationFile: /files/placeholder-presentation-3.pdf
-order: 5
 ---

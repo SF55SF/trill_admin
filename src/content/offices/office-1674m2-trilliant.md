@@ -5,6 +5,7 @@ block: Trilliant
 floor: "14"
 area: 1674
 rentRate: 40
+rentTax: НДС
 workplaces: "до 250 рабочих мест"
 ready: "Готов к въезду"
 officeLayout: "планировка смешанная, с мебелью"
@@ -33,5 +34,4 @@ planImage: "/images/office-1-plan.jpg"
 mainImage: "/images/office-1-photo-1.jpg"
 gallery: ["/images/office-1-photo-1.jpg","/images/office-1-photo-2.jpg","/images/office-1-photo-3.jpg"]
 presentationFile: /files/placeholder-presentation-1.pdf
-order: 4
 ---

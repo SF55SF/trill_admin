@@ -5,6 +5,7 @@ block: "Trilliant"
 floor: "6"
 area: 105
 rentRate: 40
+rentTax: НДС
 workplaces: "по запросу"
 ready: "Доступен"
 officeLayout: "2 кабинета + open space"
@@ -20,5 +21,4 @@ planImage: "/images/offices/office-105-plan.jpg"
 mainImage: "/images/offices/office-105-main.jpg"
 gallery: ["/images/offices/office-105-gallery-01.jpg","/images/offices/office-105-gallery-02.jpg"]
 presentationFile: "/files/placeholder-presentation-1.pdf"
-order: 1
 ---
