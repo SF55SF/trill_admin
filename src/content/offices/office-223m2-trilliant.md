@@ -1,6 +1,6 @@
 ---
 published: true
-order: 3
+order: 4
 pageSlug: office-223m2-trilliant
 block: Trilliant
 floor: '8'
