@@ -1653,3 +1653,13 @@ strong{font-weight:600}
 @media(max-width:1100px){.site-header{grid-template-columns:auto 1fr auto}}
 @media(max-width:900px){.site-header{grid-template-columns:1fr auto auto}.footer-contact-bar,.footer-info-bar{grid-template-columns:1fr 1fr}}
 @media(max-width:640px){.telegram-icon-button{width:42px;min-width:42px;height:42px;min-height:42px}.footer-contact-bar,.footer-info-bar{grid-template-columns:1fr;gap:10px;min-height:0}.footer-info-note{text-align:left}.footer-telegram{justify-self:start}}
+
+
+/* TRILLIANT_OFFICE_META_REORDER */
+.office-card-topline{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+.office-card-topline .office-rent-box{width:100%;min-height:96px}
+.office-card-topline .telegram-icon-button{align-self:center;width:52px;min-width:52px;height:52px;min-height:52px}
+.office-layout-row{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;margin:10px 0 0;padding:12px 14px;border-radius:16px;background:var(--surface-soft)}
+.office-layout-row strong{color:var(--muted);font-size:12px;font-weight:600}
+.office-layout-row span{font-size:15px;font-weight:500;text-align:right}
+@media(max-width:640px){.office-card-topline .office-rent-box{min-height:88px}.office-card-topline .telegram-icon-button{width:48px;min-width:48px;height:48px;min-height:48px}.office-layout-row{grid-template-columns:1fr;gap:4px}.office-layout-row span{text-align:left}}
