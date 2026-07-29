@@ -5,9 +5,10 @@ import Header from '../components/Header.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import { absoluteUrl, homeAnchor, relativePath } from '../lib/paths';
+import { isOfficePublic } from '../lib/offices';
 
 export async function getStaticPaths() {
-  const offices = await getCollection('offices', ({ data }) => data.published !== false);
+  const offices = (await getCollection('offices')).filter((office) => isOfficePublic(office.data));
 
   return offices.map((office) => ({
     params: { slug: office.data.pageSlug },
