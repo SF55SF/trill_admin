@@ -48,7 +48,7 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
 
           <div class="office-detail-meta">
             <p><strong>Планировка</strong><span>{data.officeLayout}</span></p>
-            <p><strong>Ставка аренды</strong><span>{rentRate}</span><small>не включая эксплуатацию и налоги.</small></p>
+            <p><strong>Ставка аренды</strong><span>{rentRate}</span><small>не включая эксплуатацию и {data.rentTax}.</small></p>
           </div>
 
           <ul class="feature-list">

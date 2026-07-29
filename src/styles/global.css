@@ -1547,3 +1547,28 @@ body .office-detail-page h1.office-detail-title {
 .map-interaction{background:transparent}
 @media(max-width:900px){.footer-contact-bar{flex-wrap:wrap;justify-content:flex-start}}
 @media(max-width:640px){.footer-contact-bar{display:grid;gap:10px;padding:16px}}
+
+
+/* TRILLIANT_OFFICE_MEDIA_TABLE_FIX */
+.office-card{grid-template-columns:minmax(360px,.82fr) minmax(520px,1.18fr);gap:24px;padding:28px;align-items:start}
+.office-card .plan-placeholder{min-height:0;aspect-ratio:16/9;border:1px solid var(--line);background:#fff}
+.office-card .plan-placeholder .image-open-button,.office-card .mini-gallery .image-open-button{width:100%;height:100%}
+.office-card .plan-placeholder img{width:100%;height:100%;object-fit:contain}
+.office-card .mini-gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.office-card .mini-gallery .gallery-item{height:auto;min-height:0;aspect-ratio:16/9}
+.office-card .mini-gallery img{width:100%;height:100%;object-fit:cover}
+.office-card .telegram-icon-button{display:inline-grid;width:44px;min-width:44px;height:44px;min-height:44px;padding:0;place-items:center;border-radius:50%}
+.telegram-icon-button svg{width:20px;height:20px;fill:currentColor}
+.offices-browser{display:grid;grid-template-columns:minmax(0,1fr) max-content;gap:28px;align-items:stretch}
+.office-hover-gallery{position:relative;min-width:0;min-height:440px;margin:0;overflow:hidden;border-radius:var(--radius);background:var(--surface-soft);box-shadow:var(--shadow)}
+.office-hover-gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .18s ease}
+.office-hover-gallery img.is-visible{opacity:1}
+.office-hover-gallery figcaption{position:absolute;left:18px;right:18px;bottom:18px;padding:10px 14px;border-radius:14px;background:rgba(17,24,32,.78);color:#fff;font-weight:700;backdrop-filter:blur(8px)}
+.offices-browser .table-wrap{width:max-content;max-width:100%;align-self:stretch;overflow:hidden}
+.offices-browser .offices-table{width:max-content;min-width:0;table-layout:auto}
+.offices-browser .offices-table th,.offices-browser .offices-table td{padding:18px 14px;white-space:nowrap;text-align:center}
+.office-option-row{cursor:pointer;transition:background .18s ease}
+.office-option-row:hover,.office-option-row.is-active{background:var(--surface-soft)}
+@media(max-width:1180px){.offices-browser{grid-template-columns:1fr}.office-hover-gallery{min-height:360px}.offices-browser .table-wrap{width:100%;overflow-x:auto}.offices-browser .offices-table{width:100%;min-width:760px}}
+@media(max-width:900px){.office-card{grid-template-columns:1fr}.office-card .plan-placeholder{aspect-ratio:16/10}}
+@media(max-width:640px){.office-card{padding:20px}.office-card .plan-placeholder{aspect-ratio:4/3}.office-card .mini-gallery{grid-template-columns:1fr}.office-hover-gallery{min-height:260px}}

@@ -53,7 +53,7 @@ const firstOffice = preparedOffices[0];
               >
                 <td data-label="Этаж">{office.data.floor}</td>
                 <td data-label="Площадь">{office.data.area} м²</td>
-                <td data-label="Ставка аренды"><span class="rent-rate"><strong>{formatRentRate(office.data.rentRate)}</strong><small>не включая эксплуатацию и налоги.</small></span></td>
+                <td data-label="Ставка аренды"><span class="rent-rate"><strong>{formatRentRate(office.data.rentRate)}</strong><small>не включая эксплуатацию и {office.data.rentTax}.</small></span></td>
                 <td data-label="Рабочие места">{office.data.workplaces}</td>
                 <td data-label="Готовность">{office.data.ready}</td>
               </tr>
@@ -127,6 +127,8 @@ const firstOffice = preparedOffices[0];
     rows.forEach((row) => {
       row.addEventListener("mouseenter", () => activate(row));
       row.addEventListener("focus", () => activate(row));
+      row.addEventListener("mouseleave", stop);
+      row.addEventListener("blur", stop);
       row.addEventListener("click", () => {
         const target = row instanceof HTMLElement ? row.dataset.target : "";
         if (target) window.location.href = target;

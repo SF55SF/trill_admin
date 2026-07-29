@@ -10,6 +10,7 @@ const offices = defineCollection({
     floor: z.string(),
     area: z.number(),
     rentRate: z.number().default(0),
+    rentTax: z.enum(["НДС", "НДФЛ"]).default("НДС"),
     workplaces: z.string(),
     ready: z.string(),
     officeLayout: z.string(),
