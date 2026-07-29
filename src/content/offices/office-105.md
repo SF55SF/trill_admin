@@ -13,10 +13,10 @@ detailTitle: "Офисный блок 105 м², 6 этаж"
 seoTitle: "Офисный блок 105 м², 6 этаж"
 description: "Офис Офисный блок 105 м², 6 этаж в бизнес-центре Trilliant"
 imageAlt: "Офисный блок 105 м², 6 этаж"
-intro: ""
+intro: "1"
 features: []
 detailFeatures: []
-planImage: "/images/office-1-plan.jpg"
+planImage: "/images/offices/office-105-plan.jpg"
 mainImage: "/images/offices/office-105-main.jpg"
 gallery: ["/images/offices/office-105-gallery-01.jpg","/images/offices/office-105-gallery-02.jpg"]
 presentationFile: "/files/placeholder-presentation-1.pdf"
