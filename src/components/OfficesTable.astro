@@ -1,45 +1,147 @@
 ---
-import type { OfficeEntry } from '../lib/offices';
+import type { OfficeEntry } from "../lib/offices";
 
 const { offices } = Astro.props as { offices: OfficeEntry[] };
+const preparedOffices = offices.map((office) => ({
+  office,
+  images: Array.from(new Set([office.data.mainImage, ...(office.data.gallery ?? [])].filter(Boolean))),
+}));
+const firstOffice = preparedOffices[0];
 ---
 
-<section id="offices" class="section">
+<section id="offices" class="section offices-section">
   <div class="container">
     <div class="section-head">
       <p class="eyebrow">Офисы в аренду</p>
       <h2>Свободные помещения</h2>
     </div>
 
-    <div class="table-wrap" aria-label="Таблица свободных офисов">
-      <table class="offices-table">
-        <thead>
-          <tr>
-            <th>Бизнес-центр</th>
-            <th>Этаж</th>
-            <th>Площадь</th>
-            <th>Рабочие места</th>
-            <th>Готовность</th>
-            <th>Планировка</th>
-          </tr>
-        </thead>
+    <div class="offices-browser" data-offices-browser>
+      <figure class="office-hover-gallery">
+        <img
+          src={firstOffice?.images[0] ?? ""}
+          alt={firstOffice?.office.data.imageAlt ?? "Офис в бизнес-центре Trilliant"}
+          data-office-preview
+          class="is-visible"
+        />
+        <figcaption data-office-preview-caption>{firstOffice?.office.data.title ?? ""}</figcaption>
+      </figure>
 
-        <tbody>
-          {offices.map((office) => (
-            <tr
-              class="office-option-row"
-              onclick={`window.location.href = '#office-${office.data.pageSlug}'`}
-            >
-              <td data-label="Бизнес-центр">{office.data.block}</td>
-              <td data-label="Этаж">{office.data.floor}</td>
-              <td data-label="Площадь">{office.data.area} м²</td>
-              <td data-label="Рабочие места">{office.data.workplaces}</td>
-              <td data-label="Готовность">{office.data.ready}</td>
-              <td data-label="Планировка">{office.data.officeLayout}</td>
+      <div class="table-wrap" aria-label="Таблица свободных офисов">
+        <table class="offices-table">
+          <thead>
+            <tr>
+              <th>Этаж</th>
+              <th>Площадь</th>
+              <th>Рабочие места</th>
+              <th>Готовность</th>
+              <th>Планировка</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {preparedOffices.map(({ office, images }) => (
+              <tr
+                class="office-option-row"
+                data-office-row
+                data-images={JSON.stringify(images)}
+                data-title={office.data.title}
+                data-image-alt={office.data.imageAlt}
+                data-target={"#office-" + office.data.pageSlug}
+                tabindex="0"
+              >
+                <td data-label="Этаж">{office.data.floor}</td>
+                <td data-label="Площадь">{office.data.area} м²</td>
+                <td data-label="Рабочие места">{office.data.workplaces}</td>
+                <td data-label="Готовность">{office.data.ready}</td>
+                <td data-label="Планировка">{office.data.officeLayout}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const root = document.querySelector("[data-offices-browser]");
+  if (root instanceof HTMLElement) {
+    const preview = root.querySelector("[data-office-preview]");
+    const caption = root.querySelector("[data-office-preview-caption]");
+    const rows = Array.from(root.querySelectorAll("[data-office-row]"));
+    const desktop = window.matchMedia("(min-width: 901px)");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let timer = 0;
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = 0;
+    };
+
+    const showImage = (src, alt, immediate = false) => {
+      if (!(preview instanceof HTMLImageElement) || !src) return;
+      const apply = () => {
+        preview.src = src;
+        preview.alt = alt;
+        preview.classList.add("is-visible");
+      };
+      if (immediate || reduceMotion) {
+        apply();
+        return;
+      }
+      preview.classList.remove("is-visible");
+      window.setTimeout(apply, 180);
+    };
+
+    const activate = (row) => {
+      if (!(row instanceof HTMLElement) || !desktop.matches) return;
+      let images = [];
+      try {
+        const parsed = JSON.parse(row.dataset.images || "[]");
+        images = Array.isArray(parsed) ? parsed.filter(Boolean) : [];
+      } catch {
+        images = [];
+      }
+      if (!images.length) return;
+      stop();
+      rows.forEach((item) => item.classList.toggle("is-active", item === row));
+      const title = row.dataset.title || "Офис Trilliant";
+      const alt = row.dataset.imageAlt || title;
+      if (caption) caption.textContent = title;
+      images.forEach((src) => {
+        const image = new Image();
+        image.src = src;
+      });
+      let index = 0;
+      showImage(images[index], alt, true);
+      if (images.length > 1 && !reduceMotion) {
+        timer = window.setInterval(() => {
+          index = (index + 1) % images.length;
+          showImage(images[index], alt);
+        }, 1000);
+      }
+    };
+
+    rows.forEach((row) => {
+      row.addEventListener("mouseenter", () => activate(row));
+      row.addEventListener("focus", () => activate(row));
+      row.addEventListener("click", () => {
+        const target = row instanceof HTMLElement ? row.dataset.target : "";
+        if (target) window.location.href = target;
+      });
+      row.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") return;
+        event.preventDefault();
+        const target = row instanceof HTMLElement ? row.dataset.target : "";
+        if (target) window.location.href = target;
+      });
+    });
+
+    if (rows[0]) activate(rows[0]);
+    desktop.addEventListener("change", (event) => {
+      stop();
+      if (event.matches && rows[0]) activate(rows[0]);
+    });
+  }
+</script>
