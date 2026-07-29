@@ -2,6 +2,7 @@
 import type { OfficeEntry } from "../lib/offices";
 
 const { offices } = Astro.props as { offices: OfficeEntry[] };
+const formatRentRate = (value: number) => value > 0 ? "$" + new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(value) + " / м² / мес." : "По запросу";
 const preparedOffices = offices.map((office) => ({
   office,
   images: Array.from(new Set([office.data.mainImage, ...(office.data.gallery ?? [])].filter(Boolean))),
@@ -33,9 +34,9 @@ const firstOffice = preparedOffices[0];
             <tr>
               <th>Этаж</th>
               <th>Площадь</th>
+              <th>Ставка аренды</th>
               <th>Рабочие места</th>
               <th>Готовность</th>
-              <th>Планировка</th>
             </tr>
           </thead>
 
@@ -52,9 +53,9 @@ const firstOffice = preparedOffices[0];
               >
                 <td data-label="Этаж">{office.data.floor}</td>
                 <td data-label="Площадь">{office.data.area} м²</td>
+                <td data-label="Ставка аренды"><span class="rent-rate"><strong>{formatRentRate(office.data.rentRate)}</strong><small>не включая эксплуатацию и налоги.</small></span></td>
                 <td data-label="Рабочие места">{office.data.workplaces}</td>
                 <td data-label="Готовность">{office.data.ready}</td>
-                <td data-label="Планировка">{office.data.officeLayout}</td>
               </tr>
             ))}
           </tbody>

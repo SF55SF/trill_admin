@@ -52,6 +52,13 @@ collections:
         name: area
         widget: number
         value_type: int
+      - label: Ставка аренды, $/м²/месяц
+        name: rentRate
+        widget: number
+        value_type: float
+        min: 0
+        default: 0
+        hint: Введите только число. На сайте автоматически добавится примечание: не включая эксплуатацию и налоги.
       - label: Рабочие места
         name: workplaces
         widget: string

@@ -1498,3 +1498,10 @@ body .office-detail-page h1.office-detail-title {
 .map-interaction.is-active .map-control-button{border-color:var(--line);background:#fff;color:var(--dark)}
 @media (max-width:640px){.map-lock span{max-width:260px;font-size:13px}.map-control-button{top:12px;right:12px;min-height:40px;padding:9px 13px;font-size:13px}}
 /* TRILLIANT_MAP_CONTROL_END */
+
+/* TRILLIANT_RENT_TABLE */
+.offices-table{table-layout:fixed}
+.offices-table th,.offices-table td{text-align:center;vertical-align:middle}
+.rent-rate{display:grid;gap:3px;justify-items:center}
+.rent-rate small{color:var(--muted);font-size:11px;line-height:1.25}
+@media(max-width:640px){.offices-table td{text-align:left}.rent-rate{justify-items:start}}

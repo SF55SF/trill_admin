@@ -9,6 +9,7 @@ const offices = defineCollection({
     block: z.string().default('Trilliant'),
     floor: z.string(),
     area: z.number(),
+    rentRate: z.number().default(0),
     workplaces: z.string(),
     ready: z.string(),
     officeLayout: z.string(),
