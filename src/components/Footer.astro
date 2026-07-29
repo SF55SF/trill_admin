@@ -1,15 +1,23 @@
 ---
 import { navItems } from '../data/navigation';
-import { homePath, resolveNavHref } from '../lib/paths';
+import { homePath, relativePath, resolveNavHref } from '../lib/paths';
 
 const currentPath = Astro.url.pathname;
+const footerLogo = relativePath('/favicon.svg', currentPath);
 ---
 
 <footer class="site-footer">
+  <div class="container footer-contact-bar">
+    <strong>Аренда офисов в Trilliant</strong>
+    <a href="tel:+998505906059">+998 50 590 60 59</a>
+    <a href="mailto:sanjar.saimatov@cmwp.uz">sanjar.saimatov@cmwp.uz</a>
+    <a href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer">Telegram</a>
+  </div>
+
   <div class="container footer-grid">
     <div>
       <a class="logo footer-logo" href={homePath(currentPath)}>
-        <span class="logo-mark">T</span>
+        <img class="footer-logo-image" src={footerLogo} alt="" aria-hidden="true" />
         <span>Trilliant</span>
       </a>
 
@@ -28,8 +36,6 @@ const currentPath = Astro.url.pathname;
     </nav>
 
     <div class="footer-contact">
-      <a href="tel:+998505906059">+998 50 590 60 59</a>
-      <a href="mailto:sanjar.saimatov@cmwp.uz">sanjar.saimatov@cmwp.uz</a>
       <span>© 2026</span>
     </div>
   </div>

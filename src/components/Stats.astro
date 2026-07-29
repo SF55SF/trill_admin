@@ -1,3 +1,12 @@
+---
+import { getPublishedOffices } from "../lib/offices";
+
+const publishedOffices = await getPublishedOffices();
+const areas = publishedOffices.map((office) => office.data.area).filter((area) => Number.isFinite(area));
+const minArea = areas.length ? Math.min(...areas) : 0;
+const maxArea = areas.length ? Math.max(...areas) : 0;
+const areaRange = minArea === maxArea ? minArea + " м²" : minArea + " – " + maxArea + " м²";
+---
 <section id="about" class="stats-section">
   <div class="container two-col">
     <div>
@@ -42,7 +51,7 @@
       </article>
 
       <article>
-        <strong>128 – 1674 м²</strong>
+        <strong>{areaRange}</strong>
         <span>диапазон доступной площади для аренды</span>
       </article>
 
