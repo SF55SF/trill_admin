@@ -3,10 +3,10 @@ import type { OfficeEntry } from '../lib/offices';
 import { getOfficeUrl } from '../lib/offices';
 import { relativePath } from '../lib/paths';
 
-const { office, index } = Astro.props as { office: OfficeEntry; index: number };
+const { office } = Astro.props as { office: OfficeEntry };
 
 const currentPath = Astro.url.pathname;
-const imageNumber = index + 1;
+
 const data = office.data;
 
 const detailUrl = relativePath(getOfficeUrl(office), currentPath);
