@@ -1626,3 +1626,12 @@ strong{font-weight:600}
 .hero .eyebrow{font-size:16px;font-weight:600;letter-spacing:.1em}
 .hero h1 span{display:inline}
 @media(max-width:640px){.hero h1{font-size:49px;line-height:1.04}.hero .eyebrow{font-size:16px}}
+
+
+/* TRILLIANT_STATS_TEXT_ALIGNMENT */
+.stats-section .two-col{align-items:center}
+.stats-section .two-col>div:first-child p{font-size:1.15rem;line-height:1.6}
+.stats-section .stats-grid{align-self:center}
+.stats-section .stats-grid article{display:grid;place-content:center;min-height:150px;text-align:center}
+.stats-section .stats-grid strong,.stats-section .stats-grid span{width:100%;text-align:center}
+@media(max-width:640px){.stats-section .two-col>div:first-child p{font-size:1.05rem}.stats-section .stats-grid article{min-height:130px}}
