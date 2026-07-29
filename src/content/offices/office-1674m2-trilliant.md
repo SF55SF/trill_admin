@@ -33,4 +33,5 @@ planImage: "/images/office-1-plan.jpg"
 mainImage: "/images/office-1-photo-1.jpg"
 gallery: ["/images/office-1-photo-1.jpg","/images/office-1-photo-2.jpg","/images/office-1-photo-3.jpg"]
 presentationFile: /files/placeholder-presentation-1.pdf
+order: 4
 ---
