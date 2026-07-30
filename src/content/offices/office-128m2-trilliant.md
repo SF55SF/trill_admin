@@ -5,7 +5,7 @@ block: Trilliant
 floor: "7"
 area: 128
 rentRate: 40
-rentTax: "НДС"
+rentTax: "НДФЛ"
 workplaces: "до 20 рабочих мест"
 ready: "Готов к въезду"
 officeLayout: "открытая с одной переговорной"
