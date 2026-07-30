@@ -1,0 +1,55 @@
+name: Biweekly project backup
+
+on:
+  schedule:
+    - cron: "0 21 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: biweekly-project-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check biweekly schedule
+        id: schedule
+        shell: bash
+        run: |
+          week=$(date -u +%V)
+          event=${{ github.event_name }}
+          if [ "$event" = "workflow_dispatch" ] || [ $((10#$week % 2)) -eq 0 ]; then
+            echo "run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "run=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout repository
+        if: steps.schedule.outputs.run == 'true'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create backup tag and archive
+        if: steps.schedule.outputs.run == 'true'
+        shell: bash
+        run: |
+          tag="backup-$(date -u +%Y-%m-%d)-${GITHUB_RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$tag" -m "Automated project backup $tag"
+          git push origin "$tag"
+          git archive --format=tar.gz --output=trilliant-project-backup.tar.gz "$tag"
+
+      - name: Upload backup archive
+        if: steps.schedule.outputs.run == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: trilliant-project-backup
+          path: trilliant-project-backup.tar.gz
+          retention-days: 90
+          if-no-files-found: error
