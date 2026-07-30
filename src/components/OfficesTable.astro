@@ -50,7 +50,7 @@ const firstOffice = preparedOffices[0];
                 data-office-row
                 data-images={JSON.stringify(images)}
                 data-title={localizedOfficeValue(office.data, "title", lang)}
-                data-image-alt={office.data.imageAlt}
+                data-image-alt={localizedOfficeValue(office.data, "imageAlt", lang)}
                 data-target={localizedOfficePath(office.data.pageSlug, lang)}
                 tabindex="0"
               >

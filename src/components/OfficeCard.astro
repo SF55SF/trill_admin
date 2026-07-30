@@ -2,7 +2,7 @@
 import type { OfficeEntry } from '../lib/offices';
 import { getOfficeUrl } from '../lib/offices';
 import { relativePath } from "../lib/paths";
-import { getLangFromPath, localizedOfficePath, localizedOfficeValue, localizedTax, siteText } from "../lib/i18n";
+import { getLangFromPath, localizedOfficeArray, localizedOfficePath, localizedOfficeValue, localizedTax, siteText } from "../lib/i18n";
 
 const { office } = Astro.props as { office: OfficeEntry };
 
@@ -13,7 +13,7 @@ const copy = siteText[lang].offices;
 const data = office.data;
 const rawTitle = localizedOfficeValue(data, "title", lang);
 const displayTitle = rawTitle.startsWith("Офисный блок ") ? rawTitle.slice("Офисный блок ".length) : rawTitle;
-const cardFeatures = data.features.filter((feature) => !feature.toLowerCase().includes("планировк"));
+const cardFeatures = localizedOfficeArray(data, "features", lang).filter((feature) => !feature.toLowerCase().includes("планировк"));
 const rentRate = data.rentRate > 0 ? "$" + data.rentRate + " / " + copy.perMonth : copy.onRequest;
 
 const detailUrl = localizedOfficePath(data.pageSlug, lang);

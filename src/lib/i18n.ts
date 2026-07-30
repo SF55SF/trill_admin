@@ -71,6 +71,13 @@ export function localizedOfficeValue(data: any, key: string, lang: Lang) {
   return String(data[key + suffix] || data[key] || "");
 }
 
+export function localizedOfficeArray(data: any, key: string, lang: Lang) {
+  const suffix = lang === "uz" ? "Uz" : lang === "en" ? "En" : "";
+  const localized = suffix ? data[key + suffix] : data[key];
+  const fallback = data[key];
+  const value = Array.isArray(localized) && localized.length ? localized : fallback;
+  return Array.isArray(value) ? value.map((item) => String(item)).filter(Boolean) : [];
+}
 export function localizedTax(value: string, lang: Lang) {
   if (lang === "uz") return value === "НДФЛ" ? "JShDS" : "QQS";
   if (lang === "en") return value === "НДФЛ" ? "PIT" : "VAT";

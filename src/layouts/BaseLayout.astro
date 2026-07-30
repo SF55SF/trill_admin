@@ -41,7 +41,7 @@ const structuredData = {
     name: localizedOfficeValue(office.data, "title", lang),
     availability: "https://schema.org/InStock",
     url: "https://www.trilliant.uz" + localizedOfficePath(office.data.pageSlug, lang),
-    itemOffered: { "@type": "Place", name: localizedOfficeValue(office.data, "title", lang), floorSize: { "@type": "QuantitativeValue", value: office.data.area, unitCode: "MTK", unitText: "m²" } }
+    itemOffered: { "@type": "Place", name: localizedOfficeValue(office.data, "title", lang), description: localizedOfficeValue(office.data, "description", lang), floorSize: { "@type": "QuantitativeValue", value: office.data.area, unitCode: "MTK", unitText: "m²" } }
   }))
 };
 ---
