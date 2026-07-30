@@ -1,4 +1,5 @@
 ---
+import Header from "./Header.astro";
 import { navItems } from '../data/navigation';
 import { homePath, relativePath, resolveNavHref } from '../lib/paths';
 
@@ -6,18 +7,4 @@ const currentPath = Astro.url.pathname;
 const footerLogo = relativePath('/favicon.svg', currentPath);
 ---
 
-<footer class="site-footer">
-  <div class="container footer-contact-bar">
-    <strong>Аренда офисов в Trilliant</strong>
-    <a href="tel:+998505906059">+998 50 590 60 59</a>
-    <a href="mailto:sanjar.saimatov@cmwp.uz">sanjar.saimatov@cmwp.uz</a>
-    <a class="telegram-icon-button footer-telegram" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label="Написать в Telegram" title="Telegram">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.3-.07-.45-.52-.18L7.74 13.3 3.64 12c-.88-.25-.9-.86.2-1.3l16-6.18c.74-.27 1.4.18 1.15 1.3l-2.72 12.8c-.2.9-.74 1.12-1.5.7l-4.14-3.05-2 1.93c-.22.22-.4.4-.85.4Z" /></svg>
-    </a>
-  </div>
-
-  <div class="container footer-info-bar">
-    <p class="footer-info-main">Trilliant — бизнес-центр класса А, ул. Шахрисабз, 2, Ташкент</p>
-    <p class="footer-info-note">Информация не является публичной офертой · © 2026</p>
-  </div>
-</footer>
+<footer class="site-footer"><Header /><p class="footer-disclaimer">Информация не является публичной офертой</p></footer>
