@@ -5,11 +5,11 @@ block: Trilliant
 floor: "14"
 area: 1674
 rentRate: 40
-rentTax: НДС
+rentTax: "НДС"
 workplaces: "до 250 рабочих мест"
 ready: "Готов к въезду"
 officeLayout: "планировка смешанная, с мебелью"
-title: "Офисный блок 1674 м², 13 этаж"
+title: "1674 м², 13 этаж"
 detailTitle: "Крупный офис 1674 м² в БЦ Trilliant"
 seoTitle: Офис 1674 м² в аренду в БЦ Trilliant, Ташкент
 description: Аренда крупного офиса 1674 м² в бизнес-центре Trilliant класса А на улице
