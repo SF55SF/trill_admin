@@ -1,66 +1,16 @@
 ---
-import { relativePath } from '../lib/paths';
-
+import { relativePath } from "../lib/paths";
+import { getLangFromPath, siteText } from "../lib/i18n";
 const currentPath = Astro.url.pathname;
-
-const galleryImages = [
-  {
-    src: '/images/building-1.jpg',
-    alt: 'Фасад бизнес-центра Trilliant',
-    className: 'gallery-item large',
-  },
-  {
-    src: '/images/building-2.jpg',
-    alt: 'Входная группа бизнес-центра Trilliant',
-    className: 'gallery-item',
-  },
-  {
-    src: '/images/building-3.jpg',
-    alt: 'Офисное пространство в Trilliant',
-    className: 'gallery-item',
-  },
-  {
-    src: '/images/building-4.jpg',
-    alt: 'Переговорная зона в Trilliant',
-    className: 'gallery-item',
-  },
-  {
-    src: '/images/building-5.jpg',
-    alt: 'Общие зоны бизнес-центра Trilliant',
-    className: 'gallery-item',
-  },
-];
+const lang = getLangFromPath(currentPath);
+const copy = siteText[lang].gallery;
+const files = ["/images/building-1.jpg", "/images/building-2.jpg", "/images/building-3.jpg", "/images/building-4.jpg", "/images/building-5.jpg"];
 ---
-
 <section id="gallery" class="section">
   <div class="container">
-    <div class="section-heading">
-      <p class="eyebrow">Галерея</p>
-      <h2>Интерьеры и инфраструктура бизнес-центра</h2>
-      <p>
-        Современные офисные пространства, общие зоны и инфраструктура для
-        комфортной работы команды.
-      </p>
-    </div>
-
+    <div class="section-heading"><p class="eyebrow">{copy.eyebrow}</p><h2>{copy.heading}</h2><p>{copy.description}</p></div>
     <div class="gallery-grid">
-      {galleryImages.map((image) => {
-        const imageSrc = relativePath(image.src, currentPath);
-
-        return (
-          <div class={image.className}>
-            <button
-              class="image-open-button"
-              type="button"
-              data-lightbox-src={imageSrc}
-              data-lightbox-alt={image.alt}
-              aria-label={`Открыть изображение: ${image.alt}`}
-            >
-              <img src={imageSrc} alt={image.alt} />
-            </button>
-          </div>
-        );
-      })}
+      {files.map((src, index) => { const imageSrc = relativePath(src, currentPath); const alt = copy.alts[index]; return <div class={index === 0 ? "gallery-item large" : "gallery-item"}><button class="image-open-button" type="button" data-lightbox-src={imageSrc} data-lightbox-alt={alt} aria-label={copy.open + ": " + alt}><img src={imageSrc} alt={alt} /></button></div>; })}
     </div>
   </div>
 </section>

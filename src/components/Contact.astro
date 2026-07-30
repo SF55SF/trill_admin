@@ -1,69 +1,18 @@
+---
+import { getLangFromPath, siteText } from "../lib/i18n";
+const copy = siteText[getLangFromPath(Astro.url.pathname)].contact;
+---
 <section id="contacts" class="section contact-section">
   <div class="container two-col">
-    <div>
-      <p class="eyebrow">Контакты</p>
-      <h2>Получить предложение по офисам</h2>
-      <p>
-        Оставьте свои контакты, и мы свяжемся с вами для подготовки предложения.
-      </p>
-
-      <div class="contact-cards">
-        <a href="tel:+998505906059">+998 50 590 60 59</a>
-        <a href="mailto:Sanjar.Saimatov@CMWP.uz">Sanjar.Saimatov@CMWP.uz</a>
-        <a
-          href="https://t.me/sanjar_saymatov_cmwp"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          @sanjar_saymatov_cmwp
-        </a>
-      </div>
-    </div>
-
-    <form
-      class="lead-form"
-      id="lead-form"
-      action="https://formspree.io/f/xqevgjvo"
-      method="POST"
-    >
-      <label>
-        Имя
-        <input name="name" type="text" placeholder="Ваше имя" required />
-      </label>
-
-      <label>
-        Телефон
-        <input
-          name="phone"
-          type="tel"
-          placeholder="+998 __ ___-__-__"
-          required
-        />
-      </label>
-
-      <label>
-        Email
-        <input name="email" type="email" placeholder="name@example.com" />
-      </label>
-
-      <label>
-        Комментарий
-        <textarea
-          name="message"
-          rows="4"
-          placeholder="Какая площадь интересует?"
-        ></textarea>
-      </label>
-
-      <label class="checkbox-row">
-        <input name="privacy" type="checkbox" required />
-        <span>Согласен на обработку персональных данных</span>
-      </label>
-
-      <input type="hidden" name="_subject" value="Новая заявка с сайта" />
-
-      <button class="button button-dark" type="submit">Отправить</button>
-      <p class="form-note" role="status"></p>
+    <div><p class="eyebrow">{copy.eyebrow}</p><h2>{copy.heading}</h2><p>{copy.description}</p><div class="contact-cards"><a href="tel:+998505906059">+998 50 590 60 59</a><a href="mailto:Sanjar.Saimatov@CMWP.uz">Sanjar.Saimatov@CMWP.uz</a><a href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noopener noreferrer">@sanjar_saymatov_cmwp</a></div></div>
+    <form class="lead-form" id="lead-form" action="https://formspree.io/f/xqevgjvo" method="POST" data-sending={copy.sending} data-success={copy.success} data-error={copy.error} data-connection={copy.connection}>
+      <label>{copy.name}<input name="name" type="text" placeholder={copy.namePlaceholder} required /></label>
+      <label>{copy.phone}<input name="phone" type="tel" placeholder="+998 __ ___-__-__" required /></label>
+      <label>{copy.email}<input name="email" type="email" placeholder="name@example.com" /></label>
+      <label>{copy.comment}<textarea name="message" rows="4" placeholder={copy.commentPlaceholder}></textarea></label>
+      <label class="checkbox-row"><input name="privacy" type="checkbox" required /><span>{copy.privacy}</span></label>
+      <input type="hidden" name="_subject" value={copy.subject} />
+      <button class="button button-dark" type="submit">{copy.send}</button><p class="form-note" role="status"></p>
     </form>
   </div>
 </section>

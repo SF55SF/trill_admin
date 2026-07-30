@@ -1,18 +1,22 @@
 ---
 import type { OfficeEntry } from '../lib/offices';
 import { getOfficeUrl } from '../lib/offices';
-import { relativePath } from '../lib/paths';
+import { relativePath } from "../lib/paths";
+import { getLangFromPath, localizedOfficePath, localizedOfficeValue, localizedTax, siteText } from "../lib/i18n";
 
 const { office } = Astro.props as { office: OfficeEntry };
 
 const currentPath = Astro.url.pathname;
+const lang = getLangFromPath(currentPath);
+const copy = siteText[lang].offices;
 
 const data = office.data;
-const displayTitle = data.title.startsWith("Офисный блок ") ? data.title.slice("Офисный блок ".length) : data.title;
+const rawTitle = localizedOfficeValue(data, "title", lang);
+const displayTitle = rawTitle.startsWith("Офисный блок ") ? rawTitle.slice("Офисный блок ".length) : rawTitle;
 const cardFeatures = data.features.filter((feature) => !feature.toLowerCase().includes("планировк"));
-const rentRate = data.rentRate > 0 ? "$" + data.rentRate + " / м² / мес." : "По запросу";
+const rentRate = data.rentRate > 0 ? "$" + data.rentRate + " / " + copy.perMonth : copy.onRequest;
 
-const detailUrl = relativePath(getOfficeUrl(office), currentPath);
+const detailUrl = localizedOfficePath(data.pageSlug, lang);
 const presentationFile = relativePath(data.presentationFile, currentPath);
 const planImage = relativePath(data.planImage, currentPath);
 const gallery = data.gallery.map((image) => relativePath(image, currentPath));
@@ -25,8 +29,8 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
     <h3>{displayTitle}</h3>
 
     <div class="office-card-meta office-card-topline">
-      <p class="office-rent-box"><strong>Ставка аренды</strong><span>{rentRate}</span><small>не включая эксплуатацию и {data.rentTax}.</small></p>
-      <a class="button button-telegram telegram-icon-button" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label="Написать в Telegram" title="Telegram">
+      <p class="office-rent-box"><strong>{copy.rent}</strong><span>{rentRate}</span><small>{copy.excluding} {localizedTax(data.rentTax, lang)}.</small></p>
+      <a class="button button-telegram telegram-icon-button" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label={siteText[lang].telegram} title="Telegram">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.3-.07-.45-.52-.18L7.74 13.3 3.64 12c-.88-.25-.9-.86.2-1.3l16-6.18c.74-.27 1.4.18 1.15 1.3l-2.72 12.8c-.2.9-.74 1.12-1.5.7l-4.14-3.05-2 1.93c-.22.22-.4.4-.85.4Z" /></svg>
       </a>
     </div>
@@ -35,15 +39,15 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
       {cardFeatures.map((feature) => <li>{feature}</li>)}
     </ul>
 
-    <p class="office-layout-row"><span>Планировка — {data.officeLayout}</span></p>
+    <p class="office-layout-row"><span>{copy.layout} — {localizedOfficeValue(data, "officeLayout", lang)}</span></p>
 
     <div class="card-actions">
       <a class="button button-dark" href={presentationFile}>
-        Презентация
+        {copy.presentation}
       </a>
 
       <a class="button" href={detailUrl}>
-        Подробнее
+        {copy.details}
       </a>
 
 
@@ -55,29 +59,29 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
       class="image-open-button"
       type="button"
       data-lightbox-src={planImage}
-      data-lightbox-alt={`Планировка / фото офиса ${data.area} м²`}
-      aria-label={`Открыть планировку офиса ${data.area} м²`}
+      data-lightbox-alt={copy.layout + " / " + copy.office + " " + data.area + " m²"}
+      aria-label={copy.layout + " " + data.area + " m²"}
     >
       <img
         src={planImage}
-        alt={`Планировка / фото офиса ${data.area} м²`}
+        alt={copy.layout + " / " + copy.office + " " + data.area + " m²"}
       />
     </button>
   </div>
 
-  <div class="mini-gallery" aria-label={`Галерея помещения ${data.area} м²`}>
+  <div class="mini-gallery" aria-label={siteText[lang].detail.gallery + " " + data.area + " m²"}>
     {gallery.map((image, photoIndex) => (
       <div class="gallery-item">
         <button
           class="image-open-button"
           type="button"
           data-lightbox-src={image}
-          data-lightbox-alt={`Фото ${photoIndex + 1} офиса ${data.area} м²`}
-          aria-label={`Открыть фото ${photoIndex + 1} офиса ${data.area} м²`}
+          data-lightbox-alt={siteText[lang].detail.photo + " " + (photoIndex + 1) + ", " + data.area + " m²"}
+          aria-label={siteText[lang].detail.openGalleryPhoto + " " + (photoIndex + 1)}
         >
           <img
             src={image}
-            alt={`Фото ${photoIndex + 1} офиса ${data.area} м²`}
+            alt={siteText[lang].detail.photo + " " + (photoIndex + 1) + ", " + data.area + " m²"}
           />
         </button>
       </div>

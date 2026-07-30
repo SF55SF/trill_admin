@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "./Header.astro";
+import Contact from "./Contact.astro";
+import Footer from "./Footer.astro";
+import { absoluteUrl, homeAnchor, relativePath } from "../lib/paths";
+import { localizedHome, localizedOfficePath, localizedOfficeValue, localizedTax, siteText, type Lang } from "../lib/i18n";
+const { office, lang } = Astro.props as { office: CollectionEntry<"offices">; lang: Lang };
+const data = office.data;
+const copy = siteText[lang];
+const rawTitle = localizedOfficeValue(data, "detailTitle", lang);
+const displayTitle = rawTitle.startsWith("Офисный блок ") ? rawTitle.slice("Офисный блок ".length) : rawTitle;
+const intro = localizedOfficeValue(data, "intro", lang);
+const layout = localizedOfficeValue(data, "officeLayout", lang);
+const detailFeatures = data.detailFeatures.filter((feature) => !feature.toLowerCase().includes("планировк"));
+const rentRate = data.rentRate > 0 ? "$" + new Intl.NumberFormat(lang === "ru" ? "ru-RU" : lang === "uz" ? "uz-UZ" : "en-US", { maximumFractionDigits: 2 }).format(data.rentRate) + " / " + copy.detail.perMonth : copy.detail.onRequest;
+const currentPath = Astro.url.pathname;
+const canonical = absoluteUrl(localizedOfficePath(data.pageSlug, lang));
+const mainImage = relativePath(data.mainImage, currentPath);
+const gallery = data.gallery.map((image) => relativePath(image, currentPath));
+const seoTitle = displayTitle + " — Trilliant";
+const seoDescription = intro || displayTitle;
+---
+<BaseLayout lang={lang} title={seoTitle} description={seoDescription} canonical={canonical} image={absoluteUrl(data.mainImage)}>
+  <Header />
+  <main>
+    <section class="section office-detail-page"><div class="container two-col"><div>
+      <p class="eyebrow">{copy.detail.office} {data.area} m²</p><h1 class="office-detail-title">{displayTitle}</h1><p>{intro}</p>
+      <div class="office-detail-meta office-card-topline"><p class="office-rent-box"><strong>{copy.detail.rent}</strong><span>{rentRate}</span><small>{copy.detail.excluding} {localizedTax(data.rentTax, lang)}.</small></p><a class="button button-telegram telegram-icon-button" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label={copy.telegram} title="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.3-.07-.45-.52-.18L7.74 13.3 3.64 12c-.88-.25-.9-.86.2-1.3l16-6.18c.74-.27 1.4.18 1.15 1.3l-2.72 12.8c-.2.9-.74 1.12-1.5.7l-4.14-3.05-2 1.93c-.22.22-.4.4-.85.4Z" /></svg></a></div>
+      <ul class="feature-list">{detailFeatures.map((feature) => <li>{feature}</li>)}</ul>
+      <p class="office-layout-row"><span>{copy.detail.layout} — {layout}</span></p>
+      <div class="card-actions"><a class="button button-dark" href={localizedHome(lang, "contacts")}>{copy.detail.offer}</a><a class="button" href={localizedHome(lang, "offices")}>{copy.detail.allOffices}</a></div>
+    </div><div class="plan-placeholder"><button class="image-open-button" type="button" data-lightbox-src={mainImage} data-lightbox-alt={displayTitle} aria-label={copy.detail.openPhoto + " " + data.area + " m²"}><img class="office-detail-main-image" src={mainImage} alt={displayTitle} /></button></div></div></section>
+    <section class="section"><div class="container"><p class="eyebrow">{copy.detail.photo}</p><h2>{copy.detail.gallery} {data.area} m²</h2><div class="mini-gallery">{gallery.map((image, index) => <div><button class="image-open-button" type="button" data-lightbox-src={image} data-lightbox-alt={copy.detail.photo + " " + (index + 1)} aria-label={copy.detail.openGalleryPhoto + " " + (index + 1)}><img class="office-detail-gallery-image" src={image} alt={copy.detail.photo + " " + (index + 1)} /></button></div>)}</div></div></section>
+    <Contact />
+  </main>
+  <Footer />
+</BaseLayout>

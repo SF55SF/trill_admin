@@ -1,65 +1,27 @@
 ---
 import { getPublishedOffices } from "../lib/offices";
-
+import { getLangFromPath, siteText } from "../lib/i18n";
+const lang = getLangFromPath(Astro.url.pathname);
+const copy = siteText[lang].stats;
 const publishedOffices = await getPublishedOffices();
 const areas = publishedOffices.map((office) => office.data.area).filter((area) => Number.isFinite(area));
 const minArea = areas.length ? Math.min(...areas) : 0;
 const totalArea = areas.reduce(function (sum, area) { return sum + area; }, 0);
-const areaRange = minArea === totalArea ? minArea + " м²" : minArea + " – " + totalArea + " м²";
+const areaRange = minArea === totalArea ? minArea + " m²" : minArea + " – " + totalArea + " m²";
 ---
 <section id="about" class="stats-section">
   <div class="container two-col">
     <div>
-      <p class="eyebrow">О бизнес-центре</p>
-
-      <h2>Триллиант — офисное здание класса А<br />в центре г. Ташкента</h2>
-
-      <p>
-        Бизнес-центр Trilliant предлагает готовые офисы в аренду от собственника
-        в центре Ташкента.
-      </p>
-
-      <p>
-        Аренда офиса осуществляется без комиссии для арендатора. Помещения
-        полностью готовы к заезду: выполнен качественный ремонт, предусмотрена
-        мебель и инфраструктура для комфортной работы команды.
-      </p>
-
-      <p>
-        Комплекс введён в эксплуатацию, полностью функционирует и соответствует
-        уровню бизнес-центра класса А. В Trilliant доступны офисные помещения
-        различной площади: от готовых блоков для небольших команд до просторных
-        офисов для компаний, которым важно разместить сотрудников в одном
-        современном деловом пространстве.
-      </p>
-
-      <p>
-        Trilliant подходит компаниям, которые ищут офис в аренду в Ташкенте
-        с возможностью быстрого въезда.
-      </p>
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2>{copy.heading1}<br />{copy.heading2}</h2>
+      {copy.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
-
     <div class="stats-media"><video class="stats-video" data-stats-video autoplay muted loop playsinline webkit-playsinline disablepictureinpicture preload="auto"><source src="/videos/office-tour.mp4" type="video/mp4" /></video><div class="stats-grid">
-      <article>
-        <strong>Шахрисабз, 2</strong>
-        <span>адрес бизнес-центра</span>
-      </article>
-
-      <article>
-        <strong>A</strong>
-        <span>класс здания</span>
-      </article>
-
-      <article>
-        <strong>{areaRange}</strong>
-        <span>диапазон доступной площади для аренды</span>
-      </article>
-
-      <article>
-        <strong>Введено в эксплуатацию</strong>
-        <span>готовность использования</span>
-      </article>
-    </div>
-    </div>
+      <article><strong>{siteText[lang].location.addressValue}</strong><span>{copy.address}</span></article>
+      <article><strong>A</strong><span>{copy.buildingClass}</span></article>
+      <article><strong>{areaRange}</strong><span>{copy.areaRange}</span></article>
+      <article><strong>{copy.commissioned}</strong><span>{copy.readiness}</span></article>
+    </div></div>
   </div>
-</section><script is:inline>/* TRILLIANT_STATS_VIDEO_RETRY */(function(){var v=document.querySelector("[data-stats-video]");if(!(v instanceof HTMLVideoElement))return;v.autoplay=true;v.muted=true;v.defaultMuted=true;v.loop=true;v.playsInline=true;v.controls=false;var start=function(){v.muted=true;var p=v.play();if(p&&typeof p.catch==="function")p.catch(function(){});};if(v.readyState>=2)start();else{v.addEventListener("loadeddata",start,{once:true});v.addEventListener("canplay",start,{once:true});}window.addEventListener("pageshow",start);document.addEventListener("visibilitychange",function(){if(!document.hidden)start();});document.addEventListener("touchstart",start,{once:true,passive:true});window.setTimeout(start,300);window.setTimeout(start,1200);})();</script>
+</section>
+<script is:inline>/* TRILLIANT_STATS_VIDEO_RETRY */(function(){var v=document.querySelector("[data-stats-video]");if(!(v instanceof HTMLVideoElement))return;v.autoplay=true;v.muted=true;v.defaultMuted=true;v.loop=true;v.playsInline=true;v.controls=false;var start=function(){v.muted=true;var p=v.play();if(p&&typeof p.catch==="function")p.catch(function(){});};if(v.readyState>=2)start();else{v.addEventListener("loadeddata",start,{once:true});v.addEventListener("canplay",start,{once:true});}window.addEventListener("pageshow",start);document.addEventListener("visibilitychange",function(){if(!document.hidden)start();});document.addEventListener("touchstart",start,{once:true,passive:true});window.setTimeout(start,300);window.setTimeout(start,1200);})();</script>

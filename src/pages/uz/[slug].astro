@@ -1,11 +1,11 @@
 ---
 import { getCollection, type CollectionEntry } from "astro:content";
-import OfficeDetailPage from "../components/OfficeDetailPage.astro";
-import { isOfficePublic } from "../lib/offices";
+import OfficeDetailPage from "../../components/OfficeDetailPage.astro";
+import { isOfficePublic } from "../../lib/offices";
 export async function getStaticPaths() {
   const offices = (await getCollection("offices")).filter((office) => isOfficePublic(office.data));
   return offices.map((office) => ({ params: { slug: office.data.pageSlug }, props: { office } }));
 }
 const { office } = Astro.props as { office: CollectionEntry<"offices"> };
 ---
-<OfficeDetailPage office={office} lang="ru" />
+<OfficeDetailPage office={office} lang="uz" />

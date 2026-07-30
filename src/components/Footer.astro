@@ -1,10 +1,6 @@
 ---
 import Header from "./Header.astro";
-import { navItems } from '../data/navigation';
-import { homePath, relativePath, resolveNavHref } from '../lib/paths';
-
-const currentPath = Astro.url.pathname;
-const footerLogo = relativePath('/favicon.svg', currentPath);
+import { getLangFromPath, siteText } from "../lib/i18n";
+const copy = siteText[getLangFromPath(Astro.url.pathname)];
 ---
-
-<footer class="site-footer"><Header /><p class="footer-disclaimer">Информация не является публичной офертой</p><!-- FOOTER_REDEPLOY_V2 --></footer>
+<footer class="site-footer"><Header /><p class="footer-disclaimer">{copy.footer}</p><!-- FOOTER_REDEPLOY_V2 --></footer>

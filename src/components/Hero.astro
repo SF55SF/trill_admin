@@ -1,20 +1,14 @@
+---
+import { getLangFromPath, localizedHome, siteText } from "../lib/i18n";
+const lang = getLangFromPath(Astro.url.pathname);
+const copy = siteText[lang].hero;
+---
 <section id="top" class="hero section-dark">
   <div class="hero-bg" aria-hidden="true"></div>
-
   <div class="container hero-inner">
-    <p class="eyebrow">Бизнес центр Trilliant</p>
-    <h1>
-  <span>Готовые офисы</span>
-  <br />
-  <span>с ремонтом в аренду</span>
-</h1>
-    <p class="lead">
-      
-    </p>
-
-    <div class="hero-actions">
-      <a class="button button-light" href="#offices">Смотреть офисы</a>
-      <a class="button button-ghost" href="#contacts">Оставить заявку</a>
-    </div>
+    <p class="eyebrow">{copy.eyebrow}</p>
+    <h1><span>{copy.line1}</span><br /><span>{copy.line2}</span></h1>
+    <p class="lead"></p>
+    <div class="hero-actions"><a class="button button-light" href={localizedHome(lang, "offices")}>{copy.offices}</a><a class="button button-ghost" href={localizedHome(lang, "contacts")}>{copy.contact}</a></div>
   </div>
 </section>

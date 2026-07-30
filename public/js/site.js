@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
       event.preventDefault();
   
       if (formNote) {
-        formNote.textContent = 'Отправляем заявку...';
+        formNote.textContent = leadForm.dataset.sending || "Sending...";
       }
   
       const formData = new FormData(leadForm);
@@ -51,14 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
           leadForm.reset();
   
           if (formNote) {
-            formNote.textContent = 'Спасибо! Заявка отправлена.';
+            formNote.textContent = leadForm.dataset.success || "Sent";
           }
         } else if (formNote) {
-          formNote.textContent = 'Ошибка отправки. Попробуйте ещё раз.';
+          formNote.textContent = leadForm.dataset.error || "Submission error";
         }
       } catch {
         if (formNote) {
-          formNote.textContent = 'Ошибка соединения. Попробуйте позже.';
+          formNote.textContent = leadForm.dataset.connection || "Connection error";
         }
       }
     });

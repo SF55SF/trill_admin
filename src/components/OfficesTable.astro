@@ -1,8 +1,11 @@
 ---
 import type { OfficeEntry } from "../lib/offices";
+import { getLangFromPath, localizedOfficePath, localizedOfficeValue, localizedTax, siteText } from "../lib/i18n";
 
 const { offices } = Astro.props as { offices: OfficeEntry[] };
-const formatRentRate = (value: number) => value > 0 ? "$" + new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 }).format(value) + " / м² / мес." : "По запросу";
+const lang = getLangFromPath(Astro.url.pathname);
+const copy = siteText[lang].offices;
+const formatRentRate = (value: number) => value > 0 ? "$" + new Intl.NumberFormat(lang === "ru" ? "ru-RU" : lang === "uz" ? "uz-UZ" : "en-US", { maximumFractionDigits: 2 }).format(value) + " / " + copy.perMonth : copy.onRequest;
 const preparedOffices = offices.map((office) => ({
   office,
   images: Array.from(new Set([office.data.mainImage, ...(office.data.gallery ?? [])].filter(Boolean))),
@@ -13,30 +16,30 @@ const firstOffice = preparedOffices[0];
 <section id="offices" class="section offices-section">
   <div class="container">
     <div class="section-head">
-      <p class="eyebrow">Офисы в аренду</p>
-      <h2>Свободные помещения</h2>
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h2>{copy.heading}</h2>
     </div>
 
-    <div class="offices-browser" data-offices-browser>
+    <div class="offices-browser" data-offices-browser data-default-title={copy.office}>
       <figure class="office-hover-gallery">
         <img
           src={firstOffice?.images[0] ?? ""}
-          alt={firstOffice?.office.data.imageAlt ?? "Офис в бизнес-центре Trilliant"}
+          alt={firstOffice ? localizedOfficeValue(firstOffice.office.data, "title", lang) : copy.office}
           data-office-preview
           class="is-visible"
         />
-        <figcaption data-office-preview-caption>{firstOffice?.office.data.title ?? ""}</figcaption>
+        <figcaption data-office-preview-caption>{firstOffice ? localizedOfficeValue(firstOffice.office.data, "title", lang) : ""}</figcaption>
       </figure>
 
-      <div class="table-wrap" aria-label="Таблица свободных офисов">
+      <div class="table-wrap" aria-label={copy.table}>
         <table class="offices-table">
           <thead>
             <tr>
-              <th>Этаж</th>
-              <th>Площадь</th>
-              <th>Ставка аренды</th>
-              <th>Рабочие места</th>
-              <th>Готовность</th>
+              <th>{copy.floor}</th>
+              <th>{copy.area}</th>
+              <th>{copy.rent}</th>
+              <th>{copy.workplaces}</th>
+              <th>{copy.readiness}</th>
             </tr>
           </thead>
 
@@ -46,16 +49,16 @@ const firstOffice = preparedOffices[0];
                 class="office-option-row"
                 data-office-row
                 data-images={JSON.stringify(images)}
-                data-title={office.data.title}
+                data-title={localizedOfficeValue(office.data, "title", lang)}
                 data-image-alt={office.data.imageAlt}
-                data-target={"#office-" + office.data.pageSlug}
+                data-target={localizedOfficePath(office.data.pageSlug, lang)}
                 tabindex="0"
               >
-                <td data-label="Этаж">{office.data.floor}</td>
-                <td data-label="Площадь">{office.data.area} м²</td>
-                <td data-label="Ставка аренды"><span class="rent-rate"><strong>{formatRentRate(office.data.rentRate)}</strong><small>не включая эксплуатацию и {office.data.rentTax}.</small></span></td>
-                <td data-label="Рабочие места">{office.data.workplaces}</td>
-                <td data-label="Готовность">{office.data.ready}</td>
+                <td data-label={copy.floor}>{office.data.floor}</td>
+                <td data-label={copy.area}>{office.data.area} м²</td>
+                <td data-label={copy.rent}><span class="rent-rate"><strong>{formatRentRate(office.data.rentRate)}</strong><small>{copy.excluding} {localizedTax(office.data.rentTax, lang)}.</small></span></td>
+                <td data-label={copy.workplaces}>{localizedOfficeValue(office.data, "workplaces", lang)}</td>
+                <td data-label={copy.readiness}>{localizedOfficeValue(office.data, "ready", lang)}</td>
               </tr>
             ))}
           </tbody>
@@ -107,7 +110,7 @@ const firstOffice = preparedOffices[0];
       if (!images.length) return;
       stop();
       rows.forEach((item) => item.classList.toggle("is-active", item === row));
-      const title = row.dataset.title || "Офис Trilliant";
+      const title = row.dataset.title || root.dataset.defaultTitle || "Trilliant";
       const alt = row.dataset.imageAlt || title;
       if (caption) caption.textContent = title;
       images.forEach((src) => {

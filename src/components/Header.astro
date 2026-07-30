@@ -1,42 +1,26 @@
 ---
-import { navItems } from '../data/navigation';
-import { homePath, resolveNavHref } from '../lib/paths';
-
+import { getLangFromPath, languages, localizedHome, siteText, switchLanguagePath } from "../lib/i18n";
 const currentPath = Astro.url.pathname;
-const logoHref = homePath(currentPath);
+const lang = getLangFromPath(currentPath);
+const copy = siteText[lang];
 ---
 
 <header class="site-header">
-  <a class="logo" href={logoHref} aria-label="На главную страницу">
+  <a class="logo" href={localizedHome(lang)} aria-label={copy.home}>
     <span class="logo-mark"><img src="/favicon.svg" alt="" width="24" height="24" aria-hidden="true" /></span>
     <span>Trilliant</span>
   </a>
-
-  <button
-    class="menu-button"
-    type="button"
-    aria-label="Открыть меню"
-    aria-expanded="false"
-    aria-controls="main-menu"
-  >
-    <span class="menu-button__line"></span>
-    <span class="menu-button__line"></span>
-    <span class="menu-button__text">Меню</span>
+  <button class="menu-button" type="button" aria-label={copy.openMenu} aria-expanded="false" aria-controls="main-menu">
+    <span class="menu-button__line"></span><span class="menu-button__line"></span><span class="menu-button__text">{copy.menu}</span>
   </button>
-
-  <nav id="main-menu" class="main-nav" aria-label="Основная навигация">
-    {navItems.map((item) => (
-      <a href={resolveNavHref(item.href, currentPath)}>
-        {item.label}
-      </a>
-    ))}
+  <nav id="main-menu" class="main-nav" aria-label={copy.navigation}>
+    {copy.nav.map((item) => <a href={localizedHome(lang, item.anchor)}>{item.label}</a>)}
   </nav>
-
-  <a class="telegram-icon-button header-telegram" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label="Написать в Telegram" title="Telegram">
+  <div class="language-switcher" aria-label="Language">
+    {languages.map((item) => <a class:list={{ active: item === lang }} href={switchLanguagePath(currentPath, item)} aria-current={item === lang ? "page" : undefined}>{item.toUpperCase()}</a>)}
+  </div>
+  <a class="telegram-icon-button header-telegram" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label={copy.telegram} title="Telegram">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.3-.07-.45-.52-.18L7.74 13.3 3.64 12c-.88-.25-.9-.86.2-1.3l16-6.18c.74-.27 1.4.18 1.15 1.3l-2.72 12.8c-.2.9-.74 1.12-1.5.7l-4.14-3.05-2 1.93c-.22.22-.4.4-.85.4Z" /></svg>
   </a>
-  <div class="header-contacts">
-    <a href="tel:+998505906059">+998 50 590 60 59</a>
-    <a href="mailto:sanjar.saimatov@cmwp.uz">sanjar.saimatov@cmwp.uz</a>
-  </div>
+  <div class="header-contacts"><a href="tel:+998505906059">+998 50 590 60 59</a><a href="mailto:sanjar.saimatov@cmwp.uz">sanjar.saimatov@cmwp.uz</a></div>
 </header>

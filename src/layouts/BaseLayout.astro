@@ -1,160 +1,72 @@
 ---
-import '../styles/global.css';
-import { getPublishedOffices } from '../lib/offices';
-import { relativePath } from '../lib/paths';
-import Seo from '../components/Seo.astro';
-
-const {
-  title = 'Бизнес центр Trilliant — аренда готовых офисов класса А в Ташкенте',
-  description = 'Готовые офисы с ремонтом и мебелью в бизнес-центре Trilliant на улице Шахрисабз, 2 в Ташкенте.',
-  canonical = 'https://www.trilliant.uz/',
-  image = 'https://www.trilliant.uz/images/hero-bg.jpg',
-} = Astro.props;
+import "../styles/global.css";
+import { getPublishedOffices } from "../lib/offices";
+import { relativePath } from "../lib/paths";
+import { getLangFromPath, languageAlternates, localizedOfficePath, localizedOfficeValue, siteText } from "../lib/i18n";
+import Seo from "../components/Seo.astro";
 
 const currentPath = Astro.url.pathname;
+const lang = Astro.props.lang ?? getLangFromPath(currentPath);
+const copy = siteText[lang];
+const alternates = languageAlternates(currentPath);
+const locale = lang === "ru" ? "ru_RU" : lang === "uz" ? "uz_UZ" : "en_US";
+const {
+  title = lang === "ru" ? "Бизнес центр Trilliant — аренда готовых офисов класса А в Ташкенте" : lang === "uz" ? "Trilliant biznes markazi — Toshkentda A toifali tayyor ofislar ijarasi" : "Trilliant Business Center — ready Class A offices for lease in Tashkent",
+  description = lang === "ru" ? "Готовые офисы с ремонтом и мебелью в бизнес-центре Trilliant на улице Шахрисабз, 2 в Ташкенте." : lang === "uz" ? "Toshkentdagi Trilliant biznes markazida ta’mirlangan va mebelli tayyor ofislar ijarasi." : "Ready fitted and furnished offices for lease at Trilliant Business Center in central Tashkent.",
+  canonical = alternates[lang],
+  image = "https://www.trilliant.uz/images/hero-bg.jpg"
+} = Astro.props;
 
-const siteScript = relativePath('/js/site.js', currentPath);
-const favicon48 = relativePath('/favicon-48x48.png', currentPath);
-const favicon192 = relativePath('/favicon-192x192.png', currentPath);
-const appleTouchIcon = relativePath('/apple-touch-icon.png', currentPath);
-const faviconIco = relativePath('/favicon.ico', currentPath);
-const faviconSvg = relativePath('/favicon.svg', currentPath);
-
+const siteScript = relativePath("/js/site.js", currentPath);
+const favicon48 = relativePath("/favicon-48x48.png", currentPath);
+const favicon192 = relativePath("/favicon-192x192.png", currentPath);
+const appleTouchIcon = relativePath("/apple-touch-icon.png", currentPath);
+const faviconIco = relativePath("/favicon.ico", currentPath);
+const faviconSvg = relativePath("/favicon.svg", currentPath);
 const offices = await getPublishedOffices();
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://www.trilliant.uz/#owner",
-      "name": "Бизнес центр Trilliant",
-      "alternateName": "Trilliant Business Center",
-      "url": "https://www.trilliant.uz/",
-      "logo": "https://www.trilliant.uz/favicon-192x192.png",
-      "image": "https://www.trilliant.uz/images/hero-bg.jpg",
-      "telephone": "+998505906059",
-      "email": "Sanjar.Saimatov@CMWP.uz",
-      "description": "Собственник офисных помещений в бизнес-центре Trilliant предлагает готовые офисы с ремонтом и мебелью в аренду в центре Ташкента.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "улица Шахрисабз, 2",
-        "addressLocality": "Ташкент",
-        "addressCountry": "UZ"
-      },
-      "areaServed": {
-        "@type": "City",
-        "name": "Ташкент"
-      },
-      "makesOffer": offices.map((office) => ({
-        "@type": "Offer",
-        "name": `Аренда офиса ${office.data.area} м² в бизнес-центре Trilliant`,
-        "availability": "https://schema.org/InStock",
-        "businessFunction": "http://purl.org/goodrelations/v1#LeaseOut",
-        "seller": {
-          "@id": "https://www.trilliant.uz/#owner"
-        },
-        "url": `https://www.trilliant.uz/${office.data.pageSlug}/`,
-        "itemOffered": {
-          "@type": "Place",
-          "name": office.data.title,
-          "description": office.data.description,
-          "image": `https://www.trilliant.uz${office.data.mainImage}`,
-          "floorSize": {
-            "@type": "QuantitativeValue",
-            "value": office.data.area,
-            "unitCode": "MTK",
-            "unitText": "м²"
-          }
-        }
-      }))
-    },
-    {
-      "@type": "Place",
-      "@id": "https://www.trilliant.uz/#building",
-      "name": "Бизнес центр Trilliant",
-      "url": "https://www.trilliant.uz/",
-      "image": "https://www.trilliant.uz/images/hero-bg.jpg",
-      "description": "Бизнес-центр Trilliant класса А на улице Шахрисабз, 2 в Ташкенте. Доступны готовые офисные помещения в аренду от собственника.",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "улица Шахрисабз, 2",
-        "addressLocality": "Ташкент",
-        "addressCountry": "UZ"
-      },
-      "containedInPlace": {
-        "@type": "City",
-        "name": "Ташкент"
-      }
-    }
-  ]
+  "@type": "Organization",
+  name: "Trilliant Business Center",
+  url: canonical,
+  logo: "https://www.trilliant.uz/favicon-192x192.png",
+  image,
+  telephone: "+998505906059",
+  email: "Sanjar.Saimatov@CMWP.uz",
+  description,
+  address: { "@type": "PostalAddress", streetAddress: copy.location.addressValue, addressLocality: copy.location.cityValue, addressCountry: "UZ" },
+  makesOffer: offices.map((office) => ({
+    "@type": "Offer",
+    name: localizedOfficeValue(office.data, "title", lang),
+    availability: "https://schema.org/InStock",
+    url: "https://www.trilliant.uz" + localizedOfficePath(office.data.pageSlug, lang),
+    itemOffered: { "@type": "Place", name: localizedOfficeValue(office.data, "title", lang), floorSize: { "@type": "QuantitativeValue", value: office.data.area, unitCode: "MTK", unitText: "m²" } }
+  }))
 };
 ---
 
 <!doctype html>
-<html lang="ru">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <Seo
-      title={title}
-      description={description}
-      canonical={canonical}
-      image={image}
-    />
-
-    <meta
-      name="google-site-verification"
-      content="xEHhemrNGnHxS9IjiRBJbUxS5rNS1AnUkUCBgjnx_NY"
-    />
-
-    <meta
-      name="yandex-verification"
-      content="2ff22426191f68cf"
-    />
-
-    <!-- Favicon for Google Search -->
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="48x48"
-      href={favicon48}
-    />
-
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="192x192"
-      href={favicon192}
-    />
-
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href={appleTouchIcon}
-    />
-
-    <link
-      rel="shortcut icon"
-      href={faviconIco}
-    />
-
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href={faviconSvg}
-    />
-
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify(structuredData)}
-    ></script>
+    <Seo title={title} description={description} canonical={canonical} image={image} locale={locale} />
+    <link rel="alternate" hreflang="ru" href={alternates.ru} />
+    <link rel="alternate" hreflang="uz" href={alternates.uz} />
+    <link rel="alternate" hreflang="en" href={alternates.en} />
+    <link rel="alternate" hreflang="x-default" href={alternates.ru} />
+    <meta name="google-site-verification" content="xEHhemrNGnHxS9IjiRBJbUxS5rNS1AnUkUCBgjnx_NY" />
+    <meta name="yandex-verification" content="2ff22426191f68cf" />
+    <link rel="icon" type="image/png" sizes="48x48" href={favicon48} />
+    <link rel="icon" type="image/png" sizes="192x192" href={favicon192} />
+    <link rel="apple-touch-icon" sizes="180x180" href={appleTouchIcon} />
+    <link rel="shortcut icon" href={faviconIco} />
+    <link rel="icon" type="image/svg+xml" href={faviconSvg} />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
   </head>
-
   <body>
     <slot />
-
     <script is:inline src={siteScript} defer></script>
   </body>
 </html>

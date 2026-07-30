@@ -1,13 +1,10 @@
+---
+import { getLangFromPath, siteText } from "../lib/i18n";
+const copy = siteText[getLangFromPath(Astro.url.pathname)].infrastructure;
+---
 <section id="infrastructure" class="section section-dark">
   <div class="container two-col">
-    <div>
-      <p class="eyebrow infrastructure-title">Инфраструктура</p>
-      <h2></h2>
-      <p>
-        В составе комплекса доступны гостиничные, ресторанные и wellness-сервисы.
-      </p>
-    </div>
-
+    <div><p class="eyebrow infrastructure-title">{copy.eyebrow}</p><h2></h2><p>{copy.description}</p></div>
     <div class="chips infrastructure-links"><a href="https://ictashkent.com/" target="_blank" rel="noopener noreferrer">InterContinental Tashkent</a><a href="https://ictashkent.com/equilibrium-spa-fitness-club/" target="_blank" rel="noopener noreferrer">E’quilibrium Wellness Club</a><a href="https://ictashkent.com/restaurants-bar/" target="_blank" rel="noopener noreferrer">Ember</a><a href="https://www.instagram.com/brioche_tashkent/" target="_blank" rel="noopener noreferrer">Brioche</a><a href="https://ictashkent.com/restaurants-bar/" target="_blank" rel="noopener noreferrer">No’mad</a><a href="https://ictashkent.com/restaurants-bar/" target="_blank" rel="noopener noreferrer">Chach Lobby Bar</a></div>
   </div>
 </section>
