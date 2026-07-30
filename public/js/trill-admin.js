@@ -21,7 +21,7 @@ const slug=form.getAttribute("data-object-slug")||"";
 const fields={};
 try{
 for(const entry of new FormData(form).entries()){const key=entry[0],value=entry[1];if(typeof value!=="string")continue;const raw=value.trim();if(key==="area"||key==="rentRate"){const number=Number(raw.split(",").join("."));if(!Number.isFinite(number))throw Error(key==="area"?"Некорректная площадь":"Некорректная ставка аренды");fields[key]=number;}else fields[key]=raw;}
-fields.published=publishedInput instanceof HTMLInputElement?publishedInput.checked:false;button.disabled=true;setStatus("Сохраняем...","saving");
+fields.published=publishedInput instanceof HTMLInputElement?publishedInput.checked:false;button.disabled=true;setStatus("Переводим и сохраняем...","saving");if(typeof window.trillAdminFillTranslations==="function")await window.trillAdminFillTranslations(form,fields);setStatus("Сохраняем...","saving");
 const response=await fetch("/api/admin/save",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields,create:createMode})});
 const result=await response.json().catch(()=>({}));
 if(!response.ok)throw Error(result.error||("Ошибка сохранения: "+response.status));
