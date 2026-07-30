@@ -5,12 +5,12 @@ block: "Trilliant"
 floor: "6"
 area: 105
 rentRate: 40
-rentTax: НДС
+rentTax: "НДС"
 workplaces: "по запросу"
 ready: "Доступен"
 officeLayout: "2 кабинета + open space"
-title: "Офисный блок 105 м², 6 этаж"
-detailTitle: "Офисный блок 105 м², 6 этаж"
+title: "105 м², 6 этаж"
+detailTitle: "105 м², 6 этаж"
 seoTitle: "Офисный блок 105 м², 6 этаж"
 description: "Офис Офисный блок 105 м², 6 этаж в бизнес-центре Trilliant"
 imageAlt: "Офисный блок 105 м², 6 этаж"
