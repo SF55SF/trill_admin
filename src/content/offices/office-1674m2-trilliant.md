@@ -39,9 +39,9 @@ descriptionUz: "Trilliant biznes markazida 1674 m² maydonga ega keng ofis ijara
 descriptionEn: "A spacious office with an area of ​​1,674 m² is available for rent in the Trilliant business center. The option is suitable for a large company, head office or representative space."
 imageAltUz: "1674 m², Trilliant biznes markazida 13-qavat"
 imageAltEn: "1674 m², 13th floor in the Trilliant business center"
-featuresUz: ["1674 m²","14-qavat","250 tagacha ish o'rinlari","Kirishga tayyor"]
-featuresEn: ["1674 m²","14th floor","up to 250 jobs","Ready to move in"]
-detailFeaturesUz: ["1674 m²","14-qavat","250 tagacha ish o'rinlari","Kirishga tayyor"]
-detailFeaturesEn: ["1674 m²","14th floor","up to 250 jobs","Ready to move in"]
+featuresUz: ["1674 m²","13-qavat","250 tagacha ish o'rinlari","Kirishga tayyor"]
+featuresEn: ["1674 m²","13th floor","up to 250 jobs","Ready to move in"]
+detailFeaturesUz: ["1674 m²","13-qavat","250 tagacha ish o'rinlari","Kirishga tayyor"]
+detailFeaturesEn: ["1674 m²","13th floor","up to 250 jobs","Ready to move in"]
 translationLocks: ["__manual_v2"]
 ---
