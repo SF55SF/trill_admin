@@ -11,12 +11,12 @@ ready: "Доступен"
 officeLayout: "2 кабинета + open space"
 title: "105 м², 6 этаж"
 detailTitle: "105 м², 6 этаж"
-seoTitle: "Офисный блок 105 м², 6 этаж"
-description: "Офис Офисный блок 105 м², 6 этаж в бизнес-центре Trilliant"
-imageAlt: "Офисный блок 105 м², 6 этаж"
+seoTitle: "105 м², 6 этаж — аренда офиса в бизнес-центре Trilliant"
+description: "1"
+imageAlt: "105 м², 6 этаж в бизнес-центре Trilliant"
 intro: "1"
-features: []
-detailFeatures: []
+features: ["105 м²","6 этаж","по запросу","Доступен"]
+detailFeatures: ["105 м²","6 этаж","по запросу","Доступен"]
 planImage: "/images/offices/office-105-plan.jpg"
 mainImage: "/images/offices/office-105-main.jpg"
 gallery: ["/images/offices/office-105-gallery-01.jpg","/images/offices/office-105-gallery-02.jpg"]
