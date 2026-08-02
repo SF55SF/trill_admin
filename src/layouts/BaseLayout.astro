@@ -18,12 +18,14 @@ const {
 } = Astro.props;
 
 const siteScript = relativePath("/js/site.js", currentPath);
+const analyticsScript = relativePath("/js/trill-analytics.js", currentPath);
 const favicon48 = relativePath("/favicon-48x48.png", currentPath);
 const favicon192 = relativePath("/favicon-192x192.png", currentPath);
 const appleTouchIcon = relativePath("/apple-touch-icon.png", currentPath);
 const faviconIco = relativePath("/favicon.ico", currentPath);
 const faviconSvg = relativePath("/favicon.svg", currentPath);
 const offices = await getPublishedOffices();
+const yandexMetrikaId = 111250661;
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -64,9 +66,17 @@ const structuredData = {
     <link rel="shortcut icon" href={faviconIco} />
     <link rel="icon" type="image/svg+xml" href={faviconSvg} />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    <!-- TRILLIANT_YANDEX_METRIKA_V1 -->
+    <script is:inline define:vars={{ yandexMetrikaId }}>
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments);};m[i].l=Date.now();k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=true;k.src=r;a.parentNode.insertBefore(k,a);})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+      window.TRILLIANT_YM_ID=yandexMetrikaId;
+      window.ym(yandexMetrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+    </script>
   </head>
   <body>
+    <noscript><div><img src={"https://mc.yandex.ru/watch/"+yandexMetrikaId} style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <slot />
     <script is:inline src={siteScript} defer></script>
+    <script is:inline src={analyticsScript} defer></script>
   </body>
 </html>
