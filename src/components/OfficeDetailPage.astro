@@ -6,6 +6,7 @@ import Contact from "./Contact.astro";
 import Footer from "./Footer.astro";
 import { absoluteUrl, homeAnchor, relativePath } from "../lib/paths";
 import { localizedHome, localizedOfficeArray, localizedOfficePath, localizedOfficeValue, localizedTax, siteText, type Lang } from "../lib/i18n";
+import { getPublishedOffices } from "../lib/offices";
 const { office, lang } = Astro.props as { office: CollectionEntry<"offices">; lang: Lang };
 const data = office.data;
 const copy = siteText[lang];
@@ -21,19 +22,72 @@ const mainImage = relativePath(data.mainImage, currentPath);
 const gallery = data.gallery.map((image) => relativePath(image, currentPath));
 const seoTitle = localizedOfficeValue(data, "seoTitle", lang) || displayTitle + " — Trilliant";
 const seoDescription = localizedOfficeValue(data, "description", lang) || intro || displayTitle;
+// TRILLIANT_OFFICE_SEO_V1
+const allOffices = await getPublishedOffices();
+const relatedOffices = allOffices
+  .filter((item) => item.data.pageSlug !== data.pageSlug)
+  .sort((a, b) => Math.abs(a.data.area - data.area) - Math.abs(b.data.area - data.area))
+  .slice(0, 3);
+const homeUrl = lang === "ru" ? "https://www.trilliant.uz/" : "https://www.trilliant.uz/" + lang + "/";
+const breadcrumbsLabel = lang === "ru" ? "Навигационная цепочка" : lang === "uz" ? "Navigatsiya yo‘li" : "Breadcrumbs";
+const relatedHeading = lang === "ru" ? "Другие доступные офисы" : lang === "uz" ? "Boshqa mavjud ofislar" : "Other available offices";
+const contextText = lang === "ru"
+  ? "Готовый офис площадью " + data.area + " м² на " + data.floor + " этаже бизнес-центра Trilliant класса А в центре Ташкента. Планировка: " + layout + ". Помещение доступно для аренды без комиссии для арендатора."
+  : lang === "uz"
+    ? "Toshkent markazidagi A toifali Trilliant biznes markazining " + data.floor + "-qavatida joylashgan " + data.area + " m² tayyor ofis. Rejalashtirish: " + layout + ". Ofis ijarachi uchun komissiyasiz ijaraga beriladi."
+    : "A ready-to-use " + data.area + " m² office on floor " + data.floor + " at the Class A Trilliant Business Center in central Tashkent. Layout: " + layout + ". The office is available for lease with no tenant commission.";
+const breadcrumbStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: copy.home, item: homeUrl },
+    { "@type": "ListItem", position: 2, name: displayTitle, item: canonical }
+  ]
+};
+const listingStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  name: displayTitle,
+  description: seoDescription,
+  url: canonical,
+  image: absoluteUrl(data.mainImage),
+  address: { "@type": "PostalAddress", streetAddress: copy.location.addressValue, addressLocality: copy.location.cityValue, addressCountry: "UZ" },
+  additionalProperty: [
+    { "@type": "PropertyValue", name: copy.offices.area, value: data.area, unitText: "m²" },
+    { "@type": "PropertyValue", name: copy.offices.floor, value: data.floor },
+    { "@type": "PropertyValue", name: copy.offices.layout, value: layout }
+  ],
+  offers: { "@type": "Offer", url: canonical, priceCurrency: "USD", availability: "https://schema.org/InStock", ...(data.rentRate > 0 ? { price: data.rentRate } : {}) }
+};
 ---
 <BaseLayout lang={lang} title={seoTitle} description={seoDescription} canonical={canonical} image={absoluteUrl(data.mainImage)}>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbStructuredData)}></script>
+  <script type="application/ld+json" set:html={JSON.stringify(listingStructuredData)}></script>
   <Header />
   <main>
     <section class="section office-detail-page"><div class="container two-col"><div>
-      <p class="eyebrow">{copy.detail.office} {data.area} m²</p><h1 class="office-detail-title">{displayTitle}</h1><p>{intro}</p>
+      <nav class="office-breadcrumbs" aria-label={breadcrumbsLabel}><a href={homeUrl}>{copy.home}</a><span aria-hidden="true">/</span><span>{displayTitle}</span></nav>
+      <p class="eyebrow">{copy.detail.office} {data.area} m²</p><h1 class="office-detail-title">{displayTitle}</h1><p>{intro}</p><p class="office-context-copy">{contextText}</p>
       <div class="office-detail-meta office-card-topline"><p class="office-rent-box"><strong>{copy.detail.rent}</strong><span>{rentRate}</span><small>{copy.detail.excluding} {localizedTax(data.rentTax, lang)}.</small></p><a class="button button-telegram telegram-icon-button" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label={copy.telegram} title="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.3-.07-.45-.52-.18L7.74 13.3 3.64 12c-.88-.25-.9-.86.2-1.3l16-6.18c.74-.27 1.4.18 1.15 1.3l-2.72 12.8c-.2.9-.74 1.12-1.5.7l-4.14-3.05-2 1.93c-.22.22-.4.4-.85.4Z" /></svg></a></div>
       <ul class="feature-list">{detailFeatures.map((feature) => <li>{feature}</li>)}</ul>
       <p class="office-layout-row"><span>{copy.detail.layout} — {layout}</span></p>
       <div class="card-actions"><a class="button button-dark" href={localizedHome(lang, "contacts")}>{copy.detail.offer}</a><a class="button" href={localizedHome(lang, "offices")}>{copy.detail.allOffices}</a></div>
     </div><div class="plan-placeholder"><button class="image-open-button" type="button" data-lightbox-src={mainImage} data-lightbox-alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} aria-label={copy.detail.openPhoto + " " + data.area + " m²"}><img class="office-detail-main-image" src={mainImage} alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} /></button></div></div></section>
     <section class="section"><div class="container"><p class="eyebrow">{copy.detail.photo}</p><h2>{copy.detail.gallery} {data.area} m²</h2><div class="mini-gallery">{gallery.map((image, index) => <div><button class="image-open-button" type="button" data-lightbox-src={image} data-lightbox-alt={copy.detail.photo + " " + (index + 1)} aria-label={copy.detail.openGalleryPhoto + " " + (index + 1)}><img class="office-detail-gallery-image" src={image} alt={copy.detail.photo + " " + (index + 1)} /></button></div>)}</div></div></section>
+    {relatedOffices.length > 0 && <section class="section related-offices"><div class="container"><p class="eyebrow">{copy.offices.eyebrow}</p><h2>{relatedHeading}</h2><div class="related-office-grid">{relatedOffices.map((item) => <a class="related-office-link" href={localizedOfficePath(item.data.pageSlug, lang)}><strong>{localizedOfficeValue(item.data, "title", lang)}</strong><span>{item.data.area} m² · {item.data.floor}</span></a>)}</div></div></section>}
     <Contact />
   </main>
   <Footer />
+  <style>
+    .office-breadcrumbs{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px;color:var(--muted);font-size:13px}
+    .office-breadcrumbs a{color:inherit;text-decoration:none}
+    .office-breadcrumbs a:hover{text-decoration:underline}
+    .office-context-copy{margin-top:16px;color:var(--muted)}
+    .related-offices{padding-top:24px}
+    .related-office-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .related-office-link{display:grid;gap:6px;padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--surface);text-decoration:none}
+    .related-office-link:hover{border-color:var(--accent);transform:translateY(-1px)}
+    .related-office-link span{color:var(--muted);font-size:14px}
+    @media(max-width:900px){.related-office-grid{grid-template-columns:1fr}}
+  </style>
 </BaseLayout>
