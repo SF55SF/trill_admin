@@ -33,15 +33,15 @@ workplacesEn: "on request"
 readyEn: "Available"
 officeLayoutEn: "2 offices + open space"
 introEn: "1"
-seoTitleUz: "Ofis bloki 105 m², 6-qavat"
-seoTitleEn: "Office block 105 m², 6th floor"
-descriptionUz: "Ofis ofis bloki 105 m², Trilliant biznes markazida 6-qavat"
-descriptionEn: "Office Office block 105 m², 6th floor in the Trilliant business center"
-imageAltUz: "Ofis bloki 105 m², 6-qavat"
-imageAltEn: "Office block 105 m², 6th floor"
-featuresUz: []
-featuresEn: []
-detailFeaturesUz: []
-detailFeaturesEn: []
+seoTitleUz: "105 m², 6-qavat - Trilliant biznes markazida ofis ijarasi"
+seoTitleEn: "105 m², 6th floor - office rent in the Trilliant business center"
+descriptionUz: "1"
+descriptionEn: "1"
+imageAltUz: "105 m², Trilliant biznes markazida 6-qavat"
+imageAltEn: "105 m², 6th floor in the Trilliant business center"
+featuresUz: ["105 m²","6-qavat","iltimosiga binoan","Mavjud"]
+featuresEn: ["105 m²","6th floor","on request","Available"]
+detailFeaturesUz: ["105 m²","6-qavat","iltimosiga binoan","Mavjud"]
+detailFeaturesEn: ["105 m²","6th floor","on request","Available"]
 translationLocks: ["__manual_v2"]
 ---
