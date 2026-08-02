@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 pageSlug: "office-105"
 block: "Trilliant"
 floor: "6"
