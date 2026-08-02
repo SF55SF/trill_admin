@@ -2,22 +2,10 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 export type OfficeEntry = CollectionEntry<"offices">;
 
-const clean = (value: unknown) => String(value ?? "").trim();
+// TRILLIANT_MANUAL_VISIBILITY_ONLY_V2
 
 export function isOfficePublic(data: OfficeEntry["data"]) {
-  return (
-    data.published !== false &&
-    Number.isFinite(data.area) &&
-    data.area > 0 &&
-    clean(data.pageSlug).length >= 3 &&
-    clean(data.title).length >= 8 &&
-    clean(data.detailTitle).length >= 8 &&
-    clean(data.seoTitle).length >= 20 &&
-    clean(data.description).length >= 50 &&
-    clean(data.intro).length >= 50 &&
-    clean(data.mainImage).startsWith("/images/") &&
-    clean(data.planImage).startsWith("/images/")
-  );
+  return data.published !== false;
 }
 
 export async function getPublishedOffices() {
