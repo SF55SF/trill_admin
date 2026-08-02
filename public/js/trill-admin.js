@@ -1,3 +1,4 @@
+/* TRILL_ADMIN_SAVE_SEQUENCE_V10 */
 /* TRILL_ADMIN_SAVE_CLIENT_FILE_START */
 const form=document.querySelector("[data-admin-editor]");
 if(form){
@@ -21,11 +22,9 @@ const slug=form.getAttribute("data-object-slug")||"";
 const fields={};
 try{
 const arrayNames=new Set(["features","featuresUz","featuresEn","detailFeatures","detailFeaturesUz","detailFeaturesEn"]);for(const entry of new FormData(form).entries()){const key=entry[0],value=entry[1];if(typeof value!=="string")continue;const raw=value.trim();if(key==="area"||key==="rentRate"){const number=Number(raw.split(",").join("."));if(!Number.isFinite(number))throw Error(key==="area"?"Некорректная площадь":"Некорректная ставка аренды");fields[key]=number;}else if(arrayNames.has(key)){fields[key]=raw.split(String.fromCharCode(10)).map((item)=>item.replace(String.fromCharCode(13),"").trim()).filter(Boolean);}else if(key==="translationLocks"){try{const parsed=JSON.parse(raw||"[]");fields[key]=Array.isArray(parsed)?parsed:[];}catch{fields[key]=[];}}else fields[key]=raw;}if(!fields.seoTitle)fields.seoTitle=fields.title||"";if(!fields.description)fields.description=fields.intro||"";if(!fields.imageAlt)fields.imageAlt=fields.title||"";
-fields.published=publishedInput instanceof HTMLInputElement?publishedInput.checked:false;button.disabled=true;setStatus("Переводим и сохраняем...","saving");if(typeof window.trillAdminFillTranslations==="function")await window.trillAdminFillTranslations(form,fields);setStatus("Сохраняем...","saving");
-const response=await fetch("/api/admin/save",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields,create:createMode})});
-const result=await response.json().catch(()=>({}));
-if(!response.ok)throw Error(result.error||("Ошибка сохранения: "+response.status));
-if(result.created){createMode=false;existingSlugs.add(slug);setStatus("Офис создан. После публикации обновите страницу; название можно менять в любое время.","ok");}else setStatus(result.unchanged?"Изменений нет.":"Сохранено. Обновление сайта запущено.","ok");
+fields.published=publishedInput instanceof HTMLInputElement?publishedInput.checked:false;button.disabled=true;const saveFields=async(payloadFields,createFlag)=>{const response=await fetch("/api/admin/save",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields:payloadFields,create:createFlag})});const result=await response.json().catch(()=>({}));if(!response.ok)throw Error(result.error||("Ошибка сохранения: "+response.status));return result;};const ruFields={};for(const fieldKey of Object.keys(fields))if(!fieldKey.endsWith("Uz")&&!fieldKey.endsWith("En")&&fieldKey!=="translationLocks")ruFields[fieldKey]=fields[fieldKey];setStatus("Сохраняем русскую версию...","saving");const firstResult=await saveFields(ruFields,createMode);if(firstResult.created){createMode=false;existingSlugs.add(slug);}if(typeof window.trillAdminFillTranslations!=="function")throw Error("Модуль перевода не загружен");setStatus("Переводим все текстовые поля...","saving");await window.trillAdminFillTranslations(form,fields);setStatus("Сохраняем узбекскую и английскую версии...","saving");
+const result=await saveFields(fields,false);
+if(firstResult.created)setStatus("Офис создан, переведён и сохранён на трёх языках.","ok");else setStatus(firstResult.unchanged&&result.unchanged?"Изменений нет.":"Сохранено на русском, узбекском и английском языках.","ok");
 }catch(error){setStatus(error instanceof Error?error.message:"Ошибка сохранения","error");}
 finally{button.disabled=false;}
 });
