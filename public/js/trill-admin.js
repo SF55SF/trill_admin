@@ -1,3 +1,4 @@
+/* TRILL_ADMIN_ATOMIC_SAVE_V14 */
 /* TRILL_ADMIN_FORCE_RETRANSLATE_V13 */
 /* TRILL_ADMIN_SEO_AUTOFIELDS_V12 */
 /* TRILL_ADMIN_AUTOFIELDS_MANUAL_VISIBILITY_V11 */
@@ -25,9 +26,17 @@ const slug=form.getAttribute("data-object-slug")||"";
 const fields={};
 try{
 const arrayNames=new Set(["features","featuresUz","featuresEn","detailFeatures","detailFeaturesUz","detailFeaturesEn"]);for(const entry of new FormData(form).entries()){const key=entry[0],value=entry[1];if(typeof value!=="string")continue;const raw=value.trim();if(key==="area"||key==="rentRate"){const number=Number(raw.split(",").join("."));if(!Number.isFinite(number))throw Error(key==="area"?"Некорректная площадь":"Некорректная ставка аренды");fields[key]=number;}else if(arrayNames.has(key)){fields[key]=raw.split(String.fromCharCode(10)).map((item)=>item.replace(String.fromCharCode(13),"").trim()).filter(Boolean);}else if(key==="translationLocks"){try{const parsed=JSON.parse(raw||"[]");fields[key]=Array.isArray(parsed)?parsed:[];}catch{fields[key]=[];}}else fields[key]=raw;}const areaText=fields.area?String(fields.area)+" м²":"";const floorText=fields.floor?String(fields.floor)+" этаж":"";const seoParts=[areaText,floorText].filter(Boolean).join(", ");fields.seoTitle=(seoParts?"Офис "+seoParts:"Офис в аренду")+" — БЦ Trilliant, Ташкент";fields.description=("Готовый офис "+(seoParts||fields.title||"")+" в аренду в бизнес-центре Trilliant класса А в центре Ташкента. "+(fields.intro||"")).trim();fields.imageAlt=((fields.title||seoParts||"Офис")+" в бизнес-центре Trilliant, Ташкент").trim();const automaticFeatures=[areaText,floorText,fields.workplaces||"",fields.ready||""].filter(Boolean);fields.features=automaticFeatures;fields.detailFeatures=automaticFeatures.slice();fields.translationLocks=[];
-fields.published=publishedInput instanceof HTMLInputElement?publishedInput.checked:false;button.disabled=true;const saveFields=async(payloadFields,createFlag)=>{const response=await fetch("/api/admin/save",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields:payloadFields,create:createFlag})});const result=await response.json().catch(()=>({}));if(!response.ok)throw Error(result.error||("Ошибка сохранения: "+response.status));return result;};const ruFields={};for(const fieldKey of Object.keys(fields))if(!fieldKey.endsWith("Uz")&&!fieldKey.endsWith("En")&&fieldKey!=="translationLocks")ruFields[fieldKey]=fields[fieldKey];setStatus("Сохраняем русскую версию...","saving");const firstResult=await saveFields(ruFields,createMode);if(firstResult.created){createMode=false;existingSlugs.add(slug);}if(typeof window.trillAdminFillTranslations!=="function")throw Error("Модуль перевода не загружен");setStatus("Переводим все текстовые поля...","saving");await window.trillAdminFillTranslations(form,fields);setStatus("Сохраняем узбекскую и английскую версии...","saving");
-const result=await saveFields(fields,false);
-if(firstResult.created)setStatus("Офис создан и сохранён на трёх языках.","ok");else setStatus(firstResult.unchanged&&result.unchanged?"Проверено: версии RU, UZ и EN уже актуальны.":"Сохранено и заново переведено на UZ и EN.","ok");
+fields.published=publishedInput instanceof HTMLInputElement?publishedInput.checked:false;
+button.disabled=true;
+if(typeof window.trillAdminFillTranslations!=="function")throw Error("Модуль перевода не загружен");
+setStatus("Переводим все текстовые поля...","saving");
+await window.trillAdminFillTranslations(form,fields);
+setStatus("Сохраняем RU, UZ и EN одним обновлением...","saving");
+const response=await fetch("/api/admin/save",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields,create:createMode})});
+const result=await response.json().catch(()=>({}));
+if(!response.ok)throw Error(result.error||("Ошибка сохранения: "+response.status));
+if(result.created){createMode=false;existingSlugs.add(slug);setStatus("Офис создан и сохранён одним обновлением на RU, UZ и EN.","ok");}
+else setStatus(result.unchanged?"Проверено: версии RU, UZ и EN уже актуальны.":"Сохранено одним обновлением на RU, UZ и EN.","ok");
 }catch(error){setStatus(error instanceof Error?error.message:"Ошибка сохранения","error");}
 finally{button.disabled=false;}
 });
