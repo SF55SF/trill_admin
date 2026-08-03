@@ -19,7 +19,7 @@ features: ["105 м²","6 этаж","по запросу","Доступен"]
 detailFeatures: ["105 м²","6 этаж","по запросу","Доступен"]
 planImage: "/images/offices/office-105-plan.jpg"
 mainImage: "/images/offices/office-105-main.jpg"
-gallery: ["/images/offices/office-105-gallery-01.jpg","/images/offices/office-105-gallery-02.jpg"]
+gallery: ["/images/offices/office-105-gallery-01.jpg","/images/offices/office-105-gallery-02.jpg","/images/offices/office-105-gallery-03.jpg","/images/offices/office-105-gallery-04.jpg"]
 presentationFile: "/files/placeholder-presentation-1.pdf"
 titleUz: "105 m², 6-qavat"
 detailTitleUz: "105 m², 6-qavat"
