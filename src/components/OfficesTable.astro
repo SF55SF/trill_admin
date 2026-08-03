@@ -1,6 +1,6 @@
 ---
 import type { OfficeEntry } from "../lib/offices";
-import { getLangFromPath, localizedOfficePath, localizedOfficeValue, localizedTax, siteText } from "../lib/i18n";
+import { getLangFromPath, localizedOfficeValue, localizedTax, siteText } from "../lib/i18n";
 
 const { offices } = Astro.props as { offices: OfficeEntry[] };
 const lang = getLangFromPath(Astro.url.pathname);
@@ -51,7 +51,8 @@ const firstOffice = preparedOffices[0];
                 data-images={JSON.stringify(images)}
                 data-title={localizedOfficeValue(office.data, "title", lang)}
                 data-image-alt={localizedOfficeValue(office.data, "imageAlt", lang)}
-                data-target={localizedOfficePath(office.data.pageSlug, lang)}
+                data-target={"office-" + office.data.pageSlug}
+                aria-controls={"office-" + office.data.pageSlug}
                 tabindex="0"
               >
                 <td data-label={copy.floor}>{office.data.floor}</td>
@@ -134,13 +135,13 @@ const firstOffice = preparedOffices[0];
       row.addEventListener("blur", stop);
       row.addEventListener("click", () => {
         const target = row instanceof HTMLElement ? row.dataset.target : "";
-        if (target) window.location.href = target;
+        if (target) { stop(); const card = document.getElementById(target); if (card) card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); window.history.replaceState(null, "", "#" + target); }
       });
       row.addEventListener("keydown", (event) => {
         if (event.key !== "Enter" && event.key !== " ") return;
         event.preventDefault();
         const target = row instanceof HTMLElement ? row.dataset.target : "";
-        if (target) window.location.href = target;
+        if (target) { stop(); const card = document.getElementById(target); if (card) card.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }); window.history.replaceState(null, "", "#" + target); }
       });
     });
 
