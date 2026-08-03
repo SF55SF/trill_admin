@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 pageSlug: "office-107-7"
 block: "Trilliant"
 floor: "7"
@@ -30,7 +30,7 @@ descriptionEn: "Ready office 107 m², 7th floor for rent in the Trilliant class 
 imageAlt: "Офис 107 м², 7 этаж в бизнес-центре Trilliant, Ташкент"
 imageAltUz: "Ofis 107 m², Trilliant biznes markazida 7-qavat, Toshkent"
 imageAltEn: "Office 107 m², 7th floor in the Trilliant business center, Tashkent"
-intro: "Офис Офис 107 м², 7 этаж в бизнес-центре Trilliant"
+intro: ""
 introUz: ""
 introEn: ""
 features: ["107 м²","7 этаж","по запросу","Доступен"]
