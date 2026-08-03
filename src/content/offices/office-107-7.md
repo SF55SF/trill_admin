@@ -39,7 +39,7 @@ featuresEn: ["107 m²","7th floor","on request","Available"]
 detailFeatures: ["107 м²","7 этаж","по запросу","Доступен"]
 detailFeaturesUz: ["107 m²","7-qavat","iltimosiga binoan","Mavjud"]
 detailFeaturesEn: ["107 m²","7th floor","on request","Available"]
-planImage: "/images/office-1-plan.jpg"
+planImage: "/images/offices/office-107-7-plan.jpg"
 mainImage: "/images/office-1-photo-1.jpg"
 gallery: []
 presentationFile: "/files/placeholder-presentation-1.pdf"
