@@ -11,9 +11,9 @@ ready: "Доступен"
 officeLayout: "2 кабинета + open space"
 title: "105 м², 6 этаж"
 detailTitle: "105 м², 6 этаж"
-seoTitle: "105 м², 6 этаж — аренда офиса в бизнес-центре Trilliant"
-description: "1"
-imageAlt: "105 м², 6 этаж в бизнес-центре Trilliant"
+seoTitle: "Офис 105 м², 6 этаж — БЦ Trilliant, Ташкент"
+description: "Готовый офис 105 м², 6 этаж в аренду в бизнес-центре Trilliant класса А в центре Ташкента. 1"
+imageAlt: "105 м², 6 этаж в бизнес-центре Trilliant, Ташкент"
 intro: "1"
 features: ["105 м²","6 этаж","по запросу","Доступен"]
 detailFeatures: ["105 м²","6 этаж","по запросу","Доступен"]
@@ -33,15 +33,15 @@ workplacesEn: "on request"
 readyEn: "Available"
 officeLayoutEn: "2 offices + open space"
 introEn: "1"
-seoTitleUz: "105 m², 6-qavat - Trilliant biznes markazida ofis ijarasi"
-seoTitleEn: "105 m², 6th floor - office rent in the Trilliant business center"
-descriptionUz: "1"
-descriptionEn: "1"
-imageAltUz: "105 m², Trilliant biznes markazida 6-qavat"
-imageAltEn: "105 m², 6th floor in the Trilliant business center"
+seoTitleUz: "Ofis 105 m², 6-qavat - Trilliant biznes markazi, Toshkent"
+seoTitleEn: "Office 105 m², 6th floor - Trilliant Business Center, Tashkent"
+descriptionUz: "Toshkent markazidagi Trilliant A klass biznes markazida tayyor ofis 105 m², 6-qavat ijaraga beriladi. 1"
+descriptionEn: "Ready office 105 m², 6th floor for rent in the Trilliant class A business center in the center of Tashkent. 1"
+imageAltUz: "105 m², Toshkent, Trilliant biznes markazida 6-qavat"
+imageAltEn: "105 m², 6th floor in the Trilliant business center, Tashkent"
 featuresUz: ["105 m²","6-qavat","iltimosiga binoan","Mavjud"]
 featuresEn: ["105 m²","6th floor","on request","Available"]
 detailFeaturesUz: ["105 m²","6-qavat","iltimosiga binoan","Mavjud"]
 detailFeaturesEn: ["105 m²","6th floor","on request","Available"]
-translationLocks: ["__manual_v2"]
+translationLocks: ["__automatic_translation_v5"]
 ---
