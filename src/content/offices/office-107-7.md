@@ -41,7 +41,7 @@ detailFeaturesUz: ["107 m²","7-qavat","15 tagacha ish o'rinlari","Mavjud"]
 detailFeaturesEn: ["107 m²","7th floor","up to 15 workplaces","Available"]
 planImage: "/images/offices/office-107-7-plan.jpg"
 mainImage: "/images/offices/office-107-7-main.jpg"
-gallery: ["/images/offices/office-107-7-gallery-01.jpg","/images/offices/office-107-7-gallery-02.jpg","/images/offices/office-107-7-gallery-03.jpg","/images/offices/office-107-7-gallery-04.jpg"]
+gallery: ["/images/offices/office-107-7-gallery-01.jpg","/images/offices/office-107-7-gallery-02.jpg","/images/offices/office-107-7-gallery-03.jpg"]
 presentationFile: "/files/placeholder-presentation-1.pdf"
-translationLocks: ["__automatic_translation_v5"]
+translationLocks: ["__automatic_translation_v6"]
 ---
