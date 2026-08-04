@@ -73,7 +73,7 @@ const listingStructuredData = {
       <ul class="feature-list">{detailFeatures.map((feature) => <li>{feature}</li>)}</ul>
       <p class="office-layout-row"><span>{copy.detail.layout} — {layout}</span></p>
       <div class="card-actions"><a class="button button-dark" href={localizedHome(lang, "contacts")}>{copy.detail.offer}</a></div>
-    </div><div class="plan-placeholder"><button class="image-open-button" type="button" data-lightbox-src={mainImage} data-lightbox-alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} aria-label={copy.detail.openPhoto + " " + data.area + " m²"}><img class="office-detail-main-image" src={mainImage} alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} draggable="false" /></button></div></div></section>
+    </div><div class="plan-placeholder"><button class="image-open-button office-detail-main-button" type="button" data-lightbox-src={mainImage} data-lightbox-alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} aria-label={copy.detail.openPhoto + " " + data.area + " m²"} style={`--office-main-image:url("${mainImage}")`}><img class="office-detail-main-image" src={mainImage} alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} draggable="false" /></button></div></div></section>
     <!-- TRILLIANT_OFFICE_DETAIL_MEDIA_RATIO_V1 -->
     <section class="section office-detail-gallery-section"><div class="container"><p class="eyebrow">{copy.detail.photo}</p><h2>{copy.detail.gallery} {data.area} m²</h2><div class="mini-gallery">{gallery.map((image, index) => <div><button class="image-open-button" type="button" data-lightbox-src={image} data-lightbox-alt={copy.detail.photo + " " + (index + 1)} aria-label={copy.detail.openGalleryPhoto + " " + (index + 1)}><img class="office-detail-gallery-image" src={image} alt={copy.detail.photo + " " + (index + 1)} /></button></div>)}</div></div></section>
     <!-- TRILLIANT_DETAIL_VARIANT1_V2 -->
@@ -641,119 +641,130 @@ const listingStructuredData = {
     }
     /* TRILLIANT_DETAIL_ALIGNMENT_V3_END */
 
-    /* TRILLIANT_DETAIL_PAGE_WIDE_V5_START */
-    .office-detail-page{padding:28px 0!important}
-    .office-detail-page>.container.two-col,
-    .office-detail-gallery-section>.container,
-    .office-detail-plan-section>.container,
-    .related-offices>.container{
-      width:min(1440px,calc(100% - 48px))!important;
-      max-width:1440px!important;
-      margin-inline:auto!important
-    }
-    .office-detail-page>.container.two-col{
-      grid-template-columns:minmax(0,1.45fr) minmax(430px,.85fr)!important;
-      grid-template-areas:"visual panel"!important;
-      gap:24px!important;
-      align-items:stretch!important;
-      overflow:visible!important;
-      border:0!important;
-      border-radius:0!important;
-      background:transparent!important;
-      box-shadow:none!important
-    }
-    .office-detail-page>.container.two-col>div:first-child{
-      grid-area:panel!important;
-      gap:14px!important;
-      padding:28px!important;
-      border:1px solid var(--line)!important;
-      border-radius:var(--radius)!important;
-      background:var(--surface)!important;
-      box-shadow:var(--shadow)!important
-    }
-    .office-detail-page>.container.two-col>.plan-placeholder{
-      grid-area:visual!important;
-      min-height:620px!important;
-      aspect-ratio:auto!important;
-      border:1px solid var(--line)!important;
-      border-radius:var(--radius)!important;
-      background:var(--surface-soft)!important;
-      box-shadow:var(--shadow)!important
-    }
-    .office-detail-page>.container.two-col>.plan-placeholder .image-open-button,
-    .office-detail-page .office-detail-main-image{
-      display:block!important;
-      width:100%!important;
-      height:100%!important
-    }
-    .office-detail-page .office-detail-main-image{
-      min-height:620px!important;
-      object-fit:cover!important;
-      object-position:center!important;
-      pointer-events:none!important;
-      user-select:none!important;
-      -webkit-user-drag:none!important
-    }
-    .office-detail-page h1.office-detail-title,
-    .office-detail-page>.container.two-col>div:first-child>p:not(.office-context-copy):not(.office-layout-row){
-      margin-inline:0!important;
-      padding-inline:0!important
-    }
-    .office-detail-page .office-back-link{margin:0 0 8px!important}
-    .office-detail-page .office-card-topline{
-      margin-inline:-28px!important;
-      padding:18px 92px 18px 28px!important;
-      border-radius:0!important
-    }
-    .office-detail-page .feature-list{margin-inline:-28px!important}
-    .office-detail-page .feature-list li{
-      padding:13px 28px!important;
-      border-radius:0!important
-    }
-    .office-detail-page .office-layout-row{
-      width:auto!important;
-      margin-inline:-28px!important;
-      padding:14px 28px!important;
-      border-radius:0!important
-    }
-    .office-detail-page .card-actions{
-      margin:4px 0 0!important;
-      padding:0!important
-    }
-    .office-detail-page .card-actions .button{
-      width:auto!important;
-      min-width:210px!important;
-      margin-left:0!important
-    }
-    @media(max-width:1050px){
-      .office-detail-page>.container.two-col{
-        grid-template-columns:1fr!important;
-        grid-template-areas:"panel" "visual"!important
-      }
-      .office-detail-page>.container.two-col>.plan-placeholder,
-      .office-detail-page .office-detail-main-image{min-height:520px!important}
-    }
-    @media(max-width:640px){
-      .office-detail-page>.container.two-col,
-      .office-detail-gallery-section>.container,
-      .office-detail-plan-section>.container,
-      .related-offices>.container{width:calc(100% - 24px)!important}
-      .office-detail-page>.container.two-col>div:first-child{padding:18px!important}
-      .office-detail-page .office-card-topline{
-        margin-inline:-18px!important;
-        padding:15px 74px 15px 18px!important
-      }
-      .office-detail-page .feature-list,
-      .office-detail-page .office-layout-row{margin-inline:-18px!important}
-      .office-detail-page .feature-list li,
-      .office-detail-page .office-layout-row{padding-inline:18px!important}
-      .office-detail-page>.container.two-col>.plan-placeholder,
-      .office-detail-page .office-detail-main-image{min-height:300px!important}
-      .office-detail-page .card-actions .button{
-        width:100%!important;
-        min-width:0!important
-      }
-    }
-    /* TRILLIANT_DETAIL_PAGE_WIDE_V5_END */
+    /* TRILLIANT_DETAIL_PAGE_WIDE_V6_START */
+.office-detail-page{padding:28px 0!important}
+.office-detail-page>.container.two-col,
+.office-detail-gallery-section>.container,
+.office-detail-plan-section>.container,
+.related-offices>.container{
+  width:min(1440px,calc(100% - 48px))!important;
+  max-width:1440px!important;
+  margin-inline:auto!important
+}
+.office-detail-page>.container.two-col{
+  grid-template-columns:minmax(0,1.45fr) minmax(430px,.85fr)!important;
+  grid-template-areas:"visual panel"!important;
+  gap:24px!important;
+  align-items:stretch!important;
+  overflow:visible!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important
+}
+.office-detail-page>.container.two-col>div:first-child{
+  grid-area:panel!important;
+  gap:14px!important;
+  padding:28px!important;
+  border:1px solid var(--line)!important;
+  border-radius:var(--radius)!important;
+  background:var(--surface)!important;
+  box-shadow:var(--shadow)!important
+}
+.office-detail-page>.container.two-col>.plan-placeholder{
+  grid-area:visual!important;
+  min-height:620px!important;
+  aspect-ratio:auto!important;
+  overflow:hidden!important;
+  border:1px solid var(--line)!important;
+  border-radius:var(--radius)!important;
+  background:var(--surface-soft)!important;
+  box-shadow:var(--shadow)!important
+}
+.office-detail-page .office-detail-main-button{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:620px!important;
+  overflow:hidden!important;
+  border:0!important;
+  background-color:var(--surface-soft)!important;
+  background-image:var(--office-main-image)!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  background-size:cover!important;
+  cursor:zoom-in!important
+}
+.office-detail-page .office-detail-main-image{
+  position:absolute!important;
+  width:1px!important;
+  min-width:1px!important;
+  max-width:1px!important;
+  height:1px!important;
+  min-height:0!important;
+  max-height:1px!important;
+  margin:0!important;
+  padding:0!important;
+  opacity:0!important;
+  clip-path:inset(50%)!important;
+  pointer-events:none!important;
+  user-select:none!important;
+  -webkit-user-drag:none!important
+}
+.office-detail-page .office-back-link{margin:0 0 8px 18px!important}
+.office-detail-page h1.office-detail-title,
+.office-detail-page>.container.two-col>div:first-child>p:not(.office-context-copy):not(.office-layout-row){
+  margin-inline:0!important;
+  padding-inline:18px!important
+}
+.office-detail-page .office-card-topline{
+  margin:0!important;
+  padding:18px 92px 18px 18px!important;
+  border-radius:14px!important
+}
+.office-detail-page .feature-list{margin:0!important;padding:0!important}
+.office-detail-page .feature-list li{padding:13px 18px!important;border-radius:14px!important}
+.office-detail-page .office-layout-row{
+  width:100%!important;
+  margin:0!important;
+  padding:14px 18px!important;
+  border-radius:14px!important
+}
+.office-detail-page .card-actions{
+  margin:4px 0 0!important;
+  padding:0 18px!important
+}
+.office-detail-page .card-actions .button{
+  width:auto!important;
+  min-width:210px!important;
+  margin-left:0!important
+}
+@media(max-width:1050px){
+  .office-detail-page>.container.two-col{
+    grid-template-columns:1fr!important;
+    grid-template-areas:"panel" "visual"!important
+  }
+  .office-detail-page>.container.two-col>.plan-placeholder,
+  .office-detail-page .office-detail-main-button{min-height:520px!important}
+}
+@media(max-width:640px){
+  .office-detail-page>.container.two-col,
+  .office-detail-gallery-section>.container,
+  .office-detail-plan-section>.container,
+  .related-offices>.container{width:calc(100% - 24px)!important}
+  .office-detail-page>.container.two-col>div:first-child{padding:18px 14px!important}
+  .office-detail-page .office-back-link{margin-left:12px!important}
+  .office-detail-page h1.office-detail-title,
+  .office-detail-page>.container.two-col>div:first-child>p:not(.office-context-copy):not(.office-layout-row){padding-inline:12px!important}
+  .office-detail-page .office-card-topline{padding:15px 74px 15px 12px!important}
+  .office-detail-page .feature-list li,
+  .office-detail-page .office-layout-row{padding-inline:12px!important}
+  .office-detail-page .card-actions{padding-inline:12px!important}
+  .office-detail-page>.container.two-col>.plan-placeholder,
+  .office-detail-page .office-detail-main-button{min-height:300px!important}
+  .office-detail-page .card-actions .button{width:100%!important;min-width:0!important}
+}
+/* TRILLIANT_DETAIL_PAGE_WIDE_V6_END */
 </style>
 </BaseLayout>
