@@ -30,14 +30,14 @@ fields.published=publishedInput instanceof HTMLInputElement?publishedInput.check
 button.disabled=true;
 if(typeof window.trillAdminFillTranslations!=="function")throw Error("Модуль перевода не загружен");
 setStatus("Переводим все текстовые поля...","saving");
-await window.trillAdminFillTranslations(form,fields);
+const translationResult=await window.trillAdminFillTranslations(form,fields);
 setStatus("Сохраняем RU, UZ и EN одним обновлением...","saving");
 const response=await fetch("/api/admin/save",{method:"POST",credentials:"same-origin",headers:{"content-type":"application/json"},body:JSON.stringify({slug,fields,create:createMode})});
 const result=await response.json().catch(()=>({}));
 if(!response.ok)throw Error(result.error||("Ошибка сохранения: "+response.status));
 if(result.created){createMode=false;existingSlugs.add(slug);setStatus("Офис создан и сохранён одним обновлением на RU, UZ и EN.","ok");}
 else setStatus(result.unchanged?"Проверено: версии RU, UZ и EN уже актуальны.":"Сохранено одним обновлением на RU, UZ и EN.","ok");
-}catch(error){setStatus(error instanceof Error?error.message:"Ошибка сохранения","error");}
+if(translationResult&&translationResult.rateLimited)setStatus("Сохранено. Переводы временно не обновлены из-за лимита сервиса; оставлены текущие версии UZ и EN.","ok");}catch(error){setStatus(error instanceof Error?error.message:"Ошибка сохранения","error");}
 finally{button.disabled=false;}
 });
 }
