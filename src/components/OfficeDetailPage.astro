@@ -67,12 +67,12 @@ const listingStructuredData = {
   <Header />
   <main>
     <section class="section office-detail-page"><div class="container two-col"><div>
-      <nav class="office-breadcrumbs" aria-label={breadcrumbsLabel}><a href={homeUrl}>{copy.home}</a><span aria-hidden="true">/</span><span>{displayTitle}</span></nav>
-      <p class="eyebrow">{copy.detail.office} {data.area} m²</p><h1 class="office-detail-title">{displayTitle}</h1><p>{intro}</p><p class="office-context-copy">{contextText}</p>
+      <a class="office-back-link" href={homeUrl} aria-label={copy.home} title={copy.home}>←</a>
+      <h1 class="office-detail-title">{displayTitle}</h1><p>{intro}</p><p class="office-context-copy">{contextText}</p>
       <div class="office-detail-meta office-card-topline"><p class="office-rent-box"><strong>{copy.detail.rent}</strong><span>{rentRate}</span><small>{copy.detail.excluding} {localizedTax(data.rentTax, lang)}.</small></p><a class="button button-telegram telegram-icon-button" href="https://t.me/sanjar_saymatov_cmwp" target="_blank" rel="noreferrer" aria-label={copy.telegram} title="Telegram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.3-.07-.45-.52-.18L7.74 13.3 3.64 12c-.88-.25-.9-.86.2-1.3l16-6.18c.74-.27 1.4.18 1.15 1.3l-2.72 12.8c-.2.9-.74 1.12-1.5.7l-4.14-3.05-2 1.93c-.22.22-.4.4-.85.4Z" /></svg></a></div>
       <ul class="feature-list">{detailFeatures.map((feature) => <li>{feature}</li>)}</ul>
       <p class="office-layout-row"><span>{copy.detail.layout} — {layout}</span></p>
-      <div class="card-actions"><a class="button button-dark" href={localizedHome(lang, "contacts")}>{copy.detail.offer}</a><a class="button" href={localizedHome(lang, "offices")}>{copy.detail.allOffices}</a></div>
+      <div class="card-actions"><a class="button button-dark" href={localizedHome(lang, "contacts")}>{copy.detail.offer}</a></div>
     </div><div class="plan-placeholder"><button class="image-open-button" type="button" data-lightbox-src={mainImage} data-lightbox-alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} aria-label={copy.detail.openPhoto + " " + data.area + " m²"}><img class="office-detail-main-image" src={mainImage} alt={localizedOfficeValue(data, "imageAlt", lang) || displayTitle} /></button></div></div></section>
     <!-- TRILLIANT_OFFICE_DETAIL_MEDIA_RATIO_V1 -->
     <section class="section office-detail-gallery-section"><div class="container"><p class="eyebrow">{copy.detail.photo}</p><h2>{copy.detail.gallery} {data.area} m²</h2><div class="mini-gallery">{gallery.map((image, index) => <div><button class="image-open-button" type="button" data-lightbox-src={image} data-lightbox-alt={copy.detail.photo + " " + (index + 1)} aria-label={copy.detail.openGalleryPhoto + " " + (index + 1)}><img class="office-detail-gallery-image" src={image} alt={copy.detail.photo + " " + (index + 1)} /></button></div>)}</div></div></section>
@@ -147,5 +147,134 @@ const listingStructuredData = {
     @media(max-width:640px){.office-detail-page{padding:24px 0 18px}.office-detail-page>.container.two-col>div:first-child{gap:14px;padding:16px;border-radius:20px}.office-detail-page>.container.two-col>.plan-placeholder{width:100%;aspect-ratio:16/10;max-height:58vh;border-radius:20px;overflow:hidden}.office-detail-page h1.office-detail-title{font-size:29px!important}.office-detail-page .feature-list{grid-template-columns:1fr}.office-detail-page .card-actions{grid-template-columns:1fr}.office-detail-gallery-section,.office-detail-plan-section,.related-offices{padding:22px 0}.office-detail-gallery-section .mini-gallery{grid-template-columns:1fr}.related-office-link{grid-template-columns:92px minmax(0,1fr)}.related-office-link img{width:92px;height:72px}}
   
     
+
+    /* TRILLIANT_DETAIL_COHESIVE_V2 */
+    .office-detail-page{padding:20px 0 12px}
+    .office-detail-page>.container.two-col{
+      gap:16px;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:var(--surface);
+      box-shadow:var(--shadow)
+    }
+    .office-detail-page>.container.two-col>div:first-child{
+      gap:12px;
+      padding:18px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      box-shadow:none
+    }
+    .office-detail-page>.container.two-col>.plan-placeholder{
+      border:0;
+      border-radius:20px;
+      box-shadow:none
+    }
+    .office-back-link{
+      display:inline-grid;
+      width:42px;
+      height:42px;
+      place-items:center;
+      margin:0 0 2px;
+      border:1px solid var(--line);
+      border-radius:50%;
+      color:var(--text);
+      font-size:26px;
+      font-weight:500;
+      line-height:1;
+      text-decoration:none;
+      transition:background .18s ease,transform .18s ease
+    }
+    .office-back-link:hover{
+      background:var(--surface-soft);
+      transform:translateX(-2px)
+    }
+    .office-detail-page h1.office-detail-title,
+    .office-detail-page>.container.two-col>div:first-child>p:not(.office-context-copy):not(.office-layout-row){
+      padding-inline:14px
+    }
+    .office-detail-page .office-rent-box,
+    .office-detail-page .feature-list li,
+    .office-detail-page .office-layout-row{
+      padding-left:14px!important
+    }
+    .office-detail-page .card-actions{
+      display:flex;
+      grid-template-columns:none;
+      justify-content:flex-start;
+      margin:2px 0 0!important;
+      padding:0 14px!important
+    }
+    .office-detail-page .card-actions .button{
+      width:auto;
+      min-width:190px;
+      min-height:44px
+    }
+    .office-detail-gallery-section,
+    .office-detail-plan-section,
+    .related-offices{
+      padding:18px 0
+    }
+    .office-detail-gallery-section h2,
+    .related-offices h2{
+      margin-top:5px;
+      margin-bottom:16px
+    }
+    .office-detail-plan-card{
+      gap:18px;
+      padding:18px
+    }
+    @media(max-width:1050px){
+      .office-detail-page>.container.two-col{
+        grid-template-areas:"panel" "visual"
+      }
+      .office-detail-page>.container.two-col>.plan-placeholder{
+        aspect-ratio:16/9
+      }
+    }
+    @media(max-width:640px){
+      .office-detail-page{padding:14px 0 10px}
+      .office-detail-page>.container.two-col{
+        width:calc(100% - 24px);
+        gap:10px;
+        padding:10px;
+        border-radius:22px
+      }
+      .office-detail-page>.container.two-col>div:first-child{
+        gap:11px;
+        padding:12px
+      }
+      .office-detail-page>.container.two-col>.plan-placeholder{
+        border-radius:17px
+      }
+      .office-back-link{
+        width:38px;
+        height:38px;
+        font-size:23px
+      }
+      .office-detail-page h1.office-detail-title,
+      .office-detail-page>.container.two-col>div:first-child>p:not(.office-context-copy):not(.office-layout-row){
+        padding-inline:10px
+      }
+      .office-detail-page .office-rent-box,
+      .office-detail-page .feature-list li,
+      .office-detail-page .office-layout-row{
+        padding-left:10px!important
+      }
+      .office-detail-page .card-actions{
+        padding-inline:10px!important
+      }
+      .office-detail-page .card-actions .button{
+        width:100%;
+        min-width:0
+      }
+      .office-detail-gallery-section,
+      .office-detail-plan-section,
+      .related-offices{
+        padding:14px 0
+      }
+    }
+
 </style>
 </BaseLayout>

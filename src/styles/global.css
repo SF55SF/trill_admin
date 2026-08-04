@@ -1769,3 +1769,158 @@ body .office-detail-gallery-section .office-detail-gallery-image {
   object-fit: cover !important;
   object-position: center;
 }
+
+/* TRILLIANT_OFFICES_SCALABLE_DESKTOP_START */
+@media (min-width: 1181px) {
+  .offices-browser {
+    display: grid;
+    grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+    gap: 28px;
+    align-items: start;
+  }
+
+  .office-hover-gallery {
+    position: sticky;
+    top: 96px;
+    width: 100%;
+    min-height: 0;
+    aspect-ratio: 4 / 3;
+    align-self: start;
+  }
+
+  .offices-browser .table-wrap {
+    width: 100%;
+    max-width: none;
+    max-height: min(68vh, 620px);
+    overflow: auto;
+    align-self: start;
+  }
+
+  .offices-browser .offices-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .offices-browser .offices-table th,
+  .offices-browser .offices-table td {
+    padding: 12px 16px;
+    white-space: normal;
+    vertical-align: middle;
+  }
+
+  .offices-browser .offices-table th:nth-child(1),
+  .offices-browser .offices-table td:nth-child(1) {
+    width: 15%;
+    white-space: nowrap;
+  }
+
+  .offices-browser .offices-table th:nth-child(2),
+  .offices-browser .offices-table td:nth-child(2) {
+    width: 20%;
+    white-space: nowrap;
+  }
+
+  .offices-browser .offices-table th:nth-child(3),
+  .offices-browser .offices-table td:nth-child(3) {
+    width: 65%;
+  }
+
+  .offices-browser .offices-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: var(--surface);
+  }
+
+  .offices-browser .rent-rate {
+    gap: 2px;
+  }
+
+  .offices-browser .rent-rate strong {
+    white-space: nowrap;
+  }
+
+  .offices-browser .rent-rate small {
+    max-width: 100%;
+    white-space: normal;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1180px) {
+  .offices-browser .table-wrap {
+    width: 100%;
+    max-width: none;
+    overflow-x: hidden;
+  }
+
+  .offices-browser .offices-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+  }
+
+  .offices-browser .offices-table th,
+  .offices-browser .offices-table td {
+    padding: 12px 14px;
+    white-space: normal;
+  }
+
+  .offices-browser .offices-table th:nth-child(1),
+  .offices-browser .offices-table td:nth-child(1) {
+    width: 15%;
+    white-space: nowrap;
+  }
+
+  .offices-browser .offices-table th:nth-child(2),
+  .offices-browser .offices-table td:nth-child(2) {
+    width: 20%;
+    white-space: nowrap;
+  }
+
+  .offices-browser .offices-table th:nth-child(3),
+  .offices-browser .offices-table td:nth-child(3) {
+    width: 65%;
+  }
+
+  .offices-browser .rent-rate strong {
+    white-space: nowrap;
+  }
+
+  .offices-browser .rent-rate small {
+    white-space: normal;
+  }
+}
+/* TRILLIANT_OFFICES_SCALABLE_DESKTOP_END */
+
+/* TRILLIANT_HOME_CARD_ALIGNMENT_V2 */
+@media(min-width:901px){
+  .office-card-content{
+    display:flex;
+    flex-direction:column;
+    align-self:stretch
+  }
+  .office-card-content .card-actions{
+    display:flex;
+    flex:1;
+    align-items:center;
+    justify-content:flex-start;
+    min-height:76px;
+    margin:0;
+    padding:12px 0
+  }
+  .office-card-content .card-actions .button{
+    margin-left:-18px
+  }
+}
+@media(max-width:900px){
+  .office-card-content .card-actions{
+    margin-top:14px;
+    padding:0
+  }
+  .office-card-content .card-actions .button{
+    margin-left:0
+  }
+}

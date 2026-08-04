@@ -66,6 +66,14 @@ const structuredData = {
     <link rel="shortcut icon" href={faviconIco} />
     <link rel="icon" type="image/svg+xml" href={faviconSvg} />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    <!-- TRILLIANT_GOOGLE_ADS_TAG_V1 -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18305780024"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+      window.gtag("js", new Date());
+      window.gtag("config", "AW-18305780024");
+    </script>
     <!-- TRILLIANT_YANDEX_METRIKA_V1 -->
     <script is:inline define:vars={{ yandexMetrikaId }}>
       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments);};m[i].l=Date.now();k=e.createElement(t);a=e.getElementsByTagName(t)[0];k.async=true;k.src=r;a.parentNode.insertBefore(k,a);})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
