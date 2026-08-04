@@ -2046,3 +2046,9 @@ body .office-detail-gallery-section .office-detail-gallery-image {
   }
 }
 /* TRILLIANT_FINAL_OFFICE_LAYOUT_V1_END */
+
+/* TRILLIANT_LAYOUT_FIX_V3_START */
+@media(min-width:1181px){html body .offices-browser{grid-template-columns:minmax(0,60fr) minmax(360px,40fr)!important}}
+@media(min-width:901px){html body .office-card-content .office-layout-row{padding-inline:24px!important}html body .office-card-content .card-actions{display:flex!important;flex:0 0 auto!important;align-items:center!important;justify-content:flex-start!important;margin:16px 0!important;padding:0 24px!important}html body .office-card-content .card-actions .button{margin-left:-20px!important}}
+@media(max-width:900px){html body .office-card-content .card-actions{margin:14px 0 0!important;padding-inline:20px!important}html body .office-card-content .card-actions .button{margin-left:0!important}}
+/* TRILLIANT_LAYOUT_FIX_V3_END */
