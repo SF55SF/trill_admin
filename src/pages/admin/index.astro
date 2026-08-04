@@ -111,6 +111,108 @@ const adminTitle=(value)=>{const title=String(value||"").trim();if(title.startsW
   background:#b42318!important;
   color:#fff!important;
 }
-/* TRILL_ADMIN_MEDIA_THUMBS_V4_END */</style>
+/* TRILL_ADMIN_MEDIA_THUMBS_V4_END */
+/* TRILL_ADMIN_MEDIA_PREVIEW_30_V6_START */
+.media .media-grid{
+  display:flex!important;
+  grid-template-columns:none!important;
+  flex-wrap:wrap!important;
+  align-items:flex-start!important;
+  justify-content:flex-start!important;
+  gap:8px!important;
+  min-height:0!important;
+  overflow:visible!important;
+}
+.media .media-grid:empty::before{
+  content:"Нет изображений"!important;
+  display:grid!important;
+  width:48px!important;
+  min-width:48px!important;
+  max-width:48px!important;
+  height:30px!important;
+  min-height:30px!important;
+  place-items:center!important;
+  padding:2px!important;
+  border:1px dashed #aaa!important;
+  background:#fff!important;
+  color:#777!important;
+  font-size:5px!important;
+  line-height:1.1!important;
+  text-align:center!important;
+}
+.media .media-grid>figure,
+.media .media-grid>.media-thumb,
+.media .media-grid figure.media-thumb{
+  position:relative!important;
+  flex:0 0 48px!important;
+  width:48px!important;
+  min-width:48px!important;
+  max-width:48px!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  padding:2px!important;
+  overflow:visible!important;
+  border:1px solid #d6d6d6!important;
+  background:#fff!important;
+}
+.media .media-grid>figure img,
+.media .media-grid>.media-thumb img,
+.media .media-grid figure.media-thumb img,
+.media .media-grid figure img{
+  display:block!important;
+  width:42px!important;
+  min-width:42px!important;
+  max-width:42px!important;
+  height:27px!important;
+  min-height:27px!important;
+  max-height:27px!important;
+  margin:0!important;
+  border-radius:2px!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  background:#eee!important;
+}
+.media .media-grid[data-upload-output="plan"]>figure img,
+.media .media-grid[data-upload-output="plan"]>.media-thumb img,
+.media .media-grid[data-upload-output="plan"] figure.media-thumb img,
+.media .media-grid[data-upload-output="plan"] figure img{
+  object-fit:contain!important;
+  background:#fff!important;
+}
+.media .media-grid>figure code,
+.media .media-grid>.media-thumb code,
+.media .media-grid figure.media-thumb code,
+.media .media-grid figure code{
+  display:none!important;
+}
+.media .media-grid .media-remove{
+  position:absolute!important;
+  top:-6px!important;
+  right:-6px!important;
+  z-index:5!important;
+  display:grid!important;
+  width:14px!important;
+  min-width:14px!important;
+  max-width:14px!important;
+  height:14px!important;
+  min-height:14px!important;
+  max-height:14px!important;
+  place-items:center!important;
+  padding:0!important;
+  border:1px solid rgba(0,0,0,.2)!important;
+  border-radius:50%!important;
+  background:#fff!important;
+  color:#b42318!important;
+  font:700 10px/1 Arial,sans-serif!important;
+  cursor:pointer!important;
+  box-shadow:0 1px 3px rgba(0,0,0,.18)!important;
+}
+.media .media-grid .media-remove:hover{
+  background:#b42318!important;
+  color:#fff!important;
+}
+/* TRILL_ADMIN_MEDIA_PREVIEW_30_V6_END */
+</style>
 <script src="/js/trill-admin-i18n.js?v=6" defer></script><!-- TRILL_ADMIN_SAVE_CLIENT_START --><script src="/js/trill-admin.js?v=15" defer></script><!-- TRILL_ADMIN_SAVE_CLIENT_END --><!-- TRILL_ADMIN_MEDIA_CLIENT_START --><script src="/js/trill-admin-media.js?v=2" defer></script><!-- TRILL_ADMIN_MEDIA_CLIENT_END --><script type="module" src="/js/trill-admin-switch.js?v=5"></script></body></html>
 <!-- TRILL_ADMIN_SHELL_END -->
