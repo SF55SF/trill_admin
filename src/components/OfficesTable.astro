@@ -38,8 +38,6 @@ const firstOffice = preparedOffices[0];
               <th>{copy.floor}</th>
               <th>{copy.area}</th>
               <th>{copy.rent}</th>
-              <th>{copy.workplaces}</th>
-              <th>{copy.readiness}</th>
             </tr>
           </thead>
 
@@ -58,8 +56,6 @@ const firstOffice = preparedOffices[0];
                 <td data-label={copy.floor}>{office.data.floor}</td>
                 <td data-label={copy.area}>{office.data.area} м²</td>
                 <td data-label={copy.rent}><span class="rent-rate"><strong>{formatRentRate(office.data.rentRate)}</strong><small>{copy.excluding} {localizedTax(office.data.rentTax, lang)}.</small></span></td>
-                <td data-label={copy.workplaces}>{localizedOfficeValue(office.data, "workplaces", lang)}</td>
-                <td data-label={copy.readiness}>{localizedOfficeValue(office.data, "ready", lang)}</td>
               </tr>
             ))}
           </tbody>

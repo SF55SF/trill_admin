@@ -1,6 +1,5 @@
 ---
 import type { OfficeEntry } from '../lib/offices';
-import { getOfficeUrl } from '../lib/offices';
 import { relativePath } from "../lib/paths";
 import { getLangFromPath, localizedOfficeArray, localizedOfficePath, localizedOfficeValue, localizedTax, siteText } from "../lib/i18n";
 
@@ -17,7 +16,6 @@ const cardFeatures = localizedOfficeArray(data, "features", lang).filter((featur
 const rentRate = data.rentRate > 0 ? "$" + data.rentRate + " / " + copy.perMonth : copy.onRequest;
 
 const detailUrl = localizedOfficePath(data.pageSlug, lang);
-const presentationFile = relativePath(data.presentationFile, currentPath);
 const planImage = relativePath(data.planImage, currentPath);
 const gallery = data.gallery.map((image) => relativePath(image, currentPath));
 ---
@@ -42,11 +40,7 @@ const gallery = data.gallery.map((image) => relativePath(image, currentPath));
     <p class="office-layout-row"><span>{copy.layout} — {localizedOfficeValue(data, "officeLayout", lang)}</span></p>
 
     <div class="card-actions">
-      <a class="button button-dark" href={presentationFile}>
-        {copy.presentation}
-      </a>
-
-      <a class="button" href={detailUrl}>
+      <a class="button button-dark" href={detailUrl}>
         {copy.details}
       </a>
 
