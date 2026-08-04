@@ -1924,3 +1924,125 @@ body .office-detail-gallery-section .office-detail-gallery-image {
     margin-left:0
   }
 }
+
+/* TRILLIANT_FINAL_OFFICE_LAYOUT_V1_START */
+@media (min-width: 1181px) {
+  html body .offices-browser {
+    display: grid !important;
+    grid-template-columns: minmax(0, 65fr) minmax(340px, 35fr) !important;
+    gap: 0 !important;
+    align-items: stretch !important;
+  }
+
+  html body .offices-browser .office-hover-gallery {
+    position: relative !important;
+    top: auto !important;
+    align-self: stretch !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    border-radius: var(--radius) 0 0 var(--radius) !important;
+  }
+
+  html body .offices-browser .office-hover-gallery img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+
+  html body .offices-browser .table-wrap {
+    align-self: stretch !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    border-radius: 0 var(--radius) var(--radius) 0 !important;
+    box-shadow: none !important;
+  }
+
+  html body .offices-browser .offices-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  html body .offices-browser .offices-table th,
+  html body .offices-browser .offices-table td {
+    padding: 12px 14px !important;
+    white-space: normal !important;
+    vertical-align: middle !important;
+  }
+
+  html body .offices-browser .offices-table th:nth-child(1),
+  html body .offices-browser .offices-table td:nth-child(1) {
+    width: 16% !important;
+    white-space: nowrap !important;
+  }
+
+  html body .offices-browser .offices-table th:nth-child(2),
+  html body .offices-browser .offices-table td:nth-child(2) {
+    width: 22% !important;
+    white-space: nowrap !important;
+  }
+
+  html body .offices-browser .offices-table th:nth-child(3),
+  html body .offices-browser .offices-table td:nth-child(3) {
+    width: 62% !important;
+  }
+
+  html body .offices-browser .offices-table thead th {
+    position: static !important;
+  }
+
+  html body .offices-browser .rent-rate strong {
+    white-space: nowrap !important;
+  }
+
+  html body .offices-browser .rent-rate small {
+    white-space: normal !important;
+  }
+}
+
+@media (min-width: 901px) {
+  html body .office-card-content {
+    --office-card-inset-final: 24px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-self: stretch !important;
+  }
+
+  html body .office-card-content .card-actions {
+    display: flex !important;
+    flex: 0 0 auto !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    min-height: 0 !important;
+    margin: 14px 0 0 !important;
+    padding: 0 var(--office-card-inset-final) !important;
+  }
+
+  html body .office-card-content .card-actions .button {
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 900px) {
+  html body .office-card-content .card-actions {
+    margin-top: 14px !important;
+    padding-inline: 20px !important;
+  }
+
+  html body .office-card-content .card-actions .button {
+    margin-left: 0 !important;
+  }
+}
+/* TRILLIANT_FINAL_OFFICE_LAYOUT_V1_END */
