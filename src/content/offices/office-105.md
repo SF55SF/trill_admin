@@ -19,7 +19,7 @@ features: ["105 м²","6 этаж","до 15 рабочих мест","Досту
 detailFeatures: ["105 м²","6 этаж","до 15 рабочих мест","Доступен"]
 planImage: "/images/offices/office-105-plan.jpg"
 mainImage: "/images/offices/office-105-main.jpg"
-gallery: ["/images/offices/office-105-gallery-01.jpg","/images/offices/office-105-gallery-02.jpg","/images/offices/office-105-gallery-03.jpg","/images/offices/office-105-gallery-04.jpg"]
+gallery: ["/images/offices/office-105-gallery-01.jpg","/images/offices/office-105-gallery-02.jpg","/images/offices/office-105-gallery-03.jpg"]
 presentationFile: "/files/placeholder-presentation-1.pdf"
 titleUz: "105 m², 6-qavat"
 detailTitleUz: "105 m², 6-qavat"
@@ -43,5 +43,5 @@ featuresUz: ["105 m²","6-qavat","15 tagacha ish o'rinlari","Mavjud"]
 featuresEn: ["105 m²","6th floor","up to 15 workplaces","Available"]
 detailFeaturesUz: ["105 m²","6-qavat","15 tagacha ish o'rinlari","Mavjud"]
 detailFeaturesEn: ["105 m²","6th floor","up to 15 workplaces","Available"]
-translationLocks: ["__automatic_translation_v5"]
+translationLocks: ["__automatic_translation_v6"]
 ---
