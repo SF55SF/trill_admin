@@ -30,7 +30,7 @@ descriptionEn: "Ready office 105 m², 5th floor for rent in the Trilliant class 
 imageAlt: "105 м², 5 этаж в бизнес-центре Trilliant, Ташкент"
 imageAltUz: "105 m², Trilliant biznes markazida 5-qavat, Toshkent"
 imageAltEn: "105 m², 5th floor in the Trilliant business center, Tashkent"
-intro: "Офис 105 м², 5 этаж в бизнес-центре Trilliant"
+intro: ""
 introUz: ""
 introEn: ""
 features: ["105 м²","5 этаж","по запросу","Готов к въезду"]
