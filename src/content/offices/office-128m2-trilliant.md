@@ -1,5 +1,5 @@
 ---
-published: true
+published: false
 pageSlug: office-128m2-trilliant
 block: Trilliant
 floor: "7"
@@ -26,7 +26,7 @@ detailTitleUz: "Trilliant biznes markazida 128 m²"
 workplacesUz: "20 tagacha ish o'rinlari"
 readyUz: "Ichkariga kirishga tayyor"
 officeLayoutUz: "bitta uchrashuv xonasi bilan ochiq"
-introUz: "Shahrisabz ko'chasi, 2-uyda joylashgan Trilliant biznes markazida maydoni 128 m² bo'lgan tayyor ofis ijaraga beriladi. Bino 20 kishigacha bo'lgan jamoaga mos keladi."
+introUz: "Shahrisabz ko'chasi, 2-uyda joylashgan Trilliant biznes markazida maydoni 128 m² bo'lgan tayyor ofis ijaraga beriladi. Bino 20 kishidan iborat jamoaga mos keladi."
 titleEn: "128 m², 7th floor"
 detailTitleEn: "128 m² in Trilliant Business Center"
 workplacesEn: "up to 20 workplaces"
@@ -35,7 +35,7 @@ officeLayoutEn: "open with one meeting room"
 introEn: "A ready-made office with an area of ​​128 m² is offered for rent in the Trilliant business center on Shakhrisabz Street, 2. The premises are suitable for a team of up to 20 people."
 seoTitleUz: "Ofis 128 m², 7-qavat - Trilliant biznes markazi, Toshkent"
 seoTitleEn: "Office 128 m², 7th floor - Trilliant Business Center, Tashkent"
-descriptionUz: "Toshkent markazidagi Trilliant A klass biznes markazida tayyor ofis 128 m², 7-qavat ijaraga beriladi. Shahrisabz ko'chasi, 2-uyda joylashgan Trilliant biznes markazida maydoni 128 m² bo'lgan tayyor ofis ijaraga beriladi. Bino 20 kishigacha bo'lgan jamoaga mos keladi."
+descriptionUz: "Toshkent markazidagi Trilliant A klass biznes markazida tayyor ofis 128 m², 7-qavat ijaraga beriladi. Shahrisabz ko'chasi, 2-uyda joylashgan Trilliant biznes markazida maydoni 128 m² bo'lgan tayyor ofis ijaraga beriladi. Bino 20 kishidan iborat jamoaga mos keladi."
 descriptionEn: "Ready office 128 m², 7th floor for rent in the Trilliant class A business center in the center of Tashkent. A ready-made office with an area of ​​128 m² is offered for rent in the Trilliant business center on Shakhrisabz Street, 2. The premises are suitable for a team of up to 20 people."
 imageAltUz: "128 m², Toshkent, Trilliant biznes markazida 7-qavat"
 imageAltEn: "128 m², 7th floor in the Trilliant business center, Tashkent"
