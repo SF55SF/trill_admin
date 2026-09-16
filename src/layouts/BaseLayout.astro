@@ -81,10 +81,54 @@ const structuredData = {
       window.ym(yandexMetrikaId,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
     </script>
   </head>
-  <body>
-    <noscript><div><img src={"https://mc.yandex.ru/watch/"+yandexMetrikaId} style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <slot />
-    <script is:inline src={siteScript} defer></script>
-    <script is:inline src={analyticsScript} defer></script>
+  <body class="trilliant-maintenance-mode">
+    <!-- TRILLIANT_MAINTENANCE_SCREEN_V1 -->
+    <main class="trilliant-maintenance-screen" aria-labelledby="maintenance-title">
+      <h1 id="maintenance-title">Сайт в разработке</h1>
+    </main>
+
+    <style is:global>
+      html,
+      body.trilliant-maintenance-mode {
+        margin: 0;
+        min-width: 100%;
+        min-height: 100%;
+        background: #000;
+      }
+
+      body.trilliant-maintenance-mode {
+        min-height: 100vh;
+        overflow: hidden;
+      }
+
+      .trilliant-maintenance-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        color: #fff;
+        text-align: center;
+        pointer-events: auto;
+      }
+
+      .trilliant-maintenance-screen h1 {
+        margin: 0;
+        padding: 24px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: clamp(28px, 5vw, 64px);
+        font-weight: 600;
+        line-height: 1.1;
+      }
+
+      body.trilliant-maintenance-mode a,
+      body.trilliant-maintenance-mode button,
+      body.trilliant-maintenance-mode [role="button"] {
+        pointer-events: none !important;
+      }
+    </style>
   </body>
 </html>
